@@ -88,7 +88,7 @@ public final class EncodingHandler {
         Bitmap blankBitmap = Bitmap.createBitmap(qrBitmapWidth, qrBitmapHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(blankBitmap);
         canvas.drawBitmap(qrBitmap, 0, 0, null);
-        canvas.save(Canvas.ALL_SAVE_FLAG);
+        canvas.save();
         float scaleSize = 1.0f;
         while ((logoBitmapWidth / scaleSize) > (qrBitmapWidth / 5) || (logoBitmapHeight / scaleSize) > (qrBitmapHeight / 5)) {
             scaleSize *= 2;
