@@ -81,7 +81,7 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-            <jiguang.chat.utils.photochoose.SelectableRoundedImageView
+            <com.jettang.chat.android.utils.photochoose.SelectableRoundedImageView
                 android:id="@+id/search_header"
                 android:layout_width="47.33dp"
                 android:layout_height="47.33dp"

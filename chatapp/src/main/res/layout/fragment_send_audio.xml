@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jiguang.chat.view.SendAudioView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jettang.chat.android.view.SendAudioView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/send_audio_view"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -13,4 +13,4 @@
         android:divider="@null">
     </ListView>
 
-</jiguang.chat.view.SendAudioView>
+</com.jettang.chat.android.view.SendAudioView>

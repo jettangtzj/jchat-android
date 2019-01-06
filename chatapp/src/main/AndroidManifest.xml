@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="jiguang.chat"
+<manifest package="com.jettang.chat.android"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <permission
@@ -59,7 +59,7 @@
         <!--如果需要使用到位置服务，需要更换百度地图apikey为自己的apikey-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="UAkQeBK84ioVGzYgA1rSWYfuD4xYtpmV"/>
+            android:value="Uy4Ie4m3G5RMYYxRLrV7ThswgAYdhfZL"/>
 
         <activity
             android:name=".activity.WelcomeActivity"

@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26.67dp">
 
-        <jiguang.chat.utils.photochoose.SelectableRoundedImageView
+        <com.jettang.chat.android.utils.photochoose.SelectableRoundedImageView
             android:id="@+id/mine_header"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -65,7 +65,7 @@
             android:textColorHint="#999"
             android:textSize="16sp"/>
 
-        <jiguang.chat.utils.ClearWriteEditText
+        <com.jettang.chat.android.utils.ClearWriteEditText
             android:id="@+id/nick_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

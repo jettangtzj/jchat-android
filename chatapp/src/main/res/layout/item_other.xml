@@ -20,7 +20,7 @@
             android:background="@drawable/pictures_select_icon"
             android:button="@null"/>
 
-        <jiguang.chat.view.MyImageView
+        <com.jettang.chat.android.view.MyImageView
             android:id="@+id/other_iv"
             android:layout_width="50dp"
             android:layout_height="50dp"

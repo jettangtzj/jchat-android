@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jiguang.chat.view.SendDocumentView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jettang.chat.android.view.SendDocumentView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/send_doc_view"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -13,4 +13,4 @@
 
     </ListView>
 
-</jiguang.chat.view.SendDocumentView>
+</com.jettang.chat.android.view.SendDocumentView>

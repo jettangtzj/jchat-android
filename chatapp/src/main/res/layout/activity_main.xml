@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jiguang.chat.view.MainView android:id="@+id/main_view"
+<com.jettang.chat.android.view.MainView android:id="@+id/main_view"
                             xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -71,7 +71,7 @@
             </FrameLayout>
         </LinearLayout>
 
-        <jiguang.chat.view.ScrollControlViewPager
+        <com.jettang.chat.android.view.ScrollControlViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -79,7 +79,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true">
 
-        </jiguang.chat.view.ScrollControlViewPager>
+        </com.jettang.chat.android.view.ScrollControlViewPager>
 
         <View
             android:layout_width="match_parent"
@@ -88,4 +88,4 @@
             android:background="#D2D2D2"/>
 
     </RelativeLayout>
-</jiguang.chat.view.MainView>
+</com.jettang.chat.android.view.MainView>

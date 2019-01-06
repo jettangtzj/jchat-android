@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jiguang.chat.view.SendFileView android:id="@+id/send_file_view"
+<com.jettang.chat.android.view.SendFileView android:id="@+id/send_file_view"
                                 xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -178,14 +178,14 @@
         </LinearLayout>
     </LinearLayout>
 
-    <jiguang.chat.view.ScrollControlViewPager
+    <com.jettang.chat.android.view.ScrollControlViewPager
 
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/send_file_rl"
         android:layout_below="@+id/action_bar_ll">
-    </jiguang.chat.view.ScrollControlViewPager>
+    </com.jettang.chat.android.view.ScrollControlViewPager>
 
     <RelativeLayout
         android:id="@+id/send_file_rl"
@@ -218,4 +218,4 @@
     </RelativeLayout>
 
 
-</jiguang.chat.view.SendFileView>
+</com.jettang.chat.android.view.SendFileView>

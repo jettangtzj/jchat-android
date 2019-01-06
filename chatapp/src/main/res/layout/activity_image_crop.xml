@@ -9,7 +9,7 @@
     <include layout="@layout/include_top_bar"/>
 
 
-    <jiguang.chat.utils.imagepicker.view.CropImageView
+    <com.jettang.chat.android.utils.imagepicker.view.CropImageView
         android:id="@+id/cv_crop_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

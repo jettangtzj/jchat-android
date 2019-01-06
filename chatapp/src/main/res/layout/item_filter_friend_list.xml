@@ -11,7 +11,7 @@
         android:background="#ffffff"
         android:orientation="horizontal">
 
-        <jiguang.chat.utils.photochoose.SelectableRoundedImageView
+        <com.jettang.chat.android.utils.photochoose.SelectableRoundedImageView
             android:id="@+id/item_aiv_friend_image"
             android:layout_width="48dp"
             android:layout_height="48dp"

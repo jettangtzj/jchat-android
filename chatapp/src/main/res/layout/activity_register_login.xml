@@ -82,7 +82,7 @@
                     android:layout_marginLeft="15.67dp"
                     android:src="@drawable/login_user_normal"/>
 
-                <jiguang.chat.utils.ClearWriteEditText
+                <com.jettang.chat.android.utils.ClearWriteEditText
                     android:id="@+id/login_userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                     android:layout_marginLeft="15.67dp"
                     android:src="@drawable/login_psw_normal"/>
 
-                <jiguang.chat.utils.ClearWriteEditText
+                <com.jettang.chat.android.utils.ClearWriteEditText
                     android:id="@+id/login_passWord"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

@@ -23,7 +23,7 @@
             android:background="@drawable/pictures_select_icon"
             android:button="@null" />
 
-        <jiguang.chat.utils.photochoose.SelectableRoundedImageView
+        <com.jettang.chat.android.utils.photochoose.SelectableRoundedImageView
             android:id="@+id/friend_photo"
             android:layout_width="36dp"
             android:layout_height="36dp"
