@@ -154,7 +154,7 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/scanning_line"/>
 
-            <com.jettang.chat.android.view.ZiXingView
+            <jiguang.chat.view.ZiXingView
                 android:id="@+id/scan_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

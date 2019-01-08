@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.SendVideoView xmlns:android="http://schemas.android.com/apk/res/android"
+<jiguang.chat.view.SendVideoView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/send_video_view"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -13,4 +13,4 @@
 
     </ListView>
 
-</com.jettang.chat.android.view.SendVideoView>
+</jiguang.chat.view.SendVideoView>

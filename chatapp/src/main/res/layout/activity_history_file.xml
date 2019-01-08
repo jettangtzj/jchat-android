@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.activity.historyfile.view.HistoryFileView android:id="@+id/send_file_view"
+<jiguang.chat.activity.historyfile.view.HistoryFileView android:id="@+id/send_file_view"
                                                         xmlns:android="http://schemas.android.com/apk/res/android"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
@@ -171,13 +171,13 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.jettang.chat.android.view.ScrollControlViewPager
+    <jiguang.chat.view.ScrollControlViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/send_file_rl"
         android:layout_below="@+id/action_bar_ll">
-    </com.jettang.chat.android.view.ScrollControlViewPager>
+    </jiguang.chat.view.ScrollControlViewPager>
 
     <RelativeLayout
         android:id="@+id/delete_file_rl"
@@ -216,4 +216,4 @@
 
     </RelativeLayout>
 
-</com.jettang.chat.android.activity.historyfile.view.HistoryFileView>
+</jiguang.chat.activity.historyfile.view.HistoryFileView>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#000">
 
-    <com.jettang.chat.android.utils.imagepicker.view.ViewPagerFixed
+    <jiguang.chat.utils.imagepicker.view.ViewPagerFixed
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
         android:background="#cc22292c"
         android:visibility="gone">
 
-        <com.jettang.chat.android.utils.imagepicker.view.SuperCheckBox
+        <jiguang.chat.utils.imagepicker.view.SuperCheckBox
             android:id="@+id/cb_origin"
             android:visibility="invisible"
             style="@style/SuperCheckboxTheme"
@@ -34,7 +34,7 @@
             android:text="原图(3.07M)"
             android:textColor="#FFF"/>
 
-        <com.jettang.chat.android.utils.imagepicker.view.SuperCheckBox
+        <jiguang.chat.utils.imagepicker.view.SuperCheckBox
             android:id="@+id/cb_check"
             style="@style/SuperCheckboxTheme"
             android:layout_width="wrap_content"

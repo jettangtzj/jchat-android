@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.jettang.chat.android.view.listview.StickyListHeadersListView
+            <jiguang.chat.view.listview.StickyListHeadersListView
                 android:id="@+id/friend_listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -61,7 +61,7 @@
                 android:visibility="invisible"/>
         </RelativeLayout>
 
-        <com.jettang.chat.android.utils.sidebar.SideBar
+        <jiguang.chat.utils.sidebar.SideBar
             android:id="@+id/sidebar"
             android:layout_width="11.33dip"
             android:layout_height="fill_parent"

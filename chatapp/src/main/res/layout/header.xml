@@ -4,7 +4,7 @@
                 android:layout_height="wrap_content"
                 android:background="#E8EDF3">
 
-    <com.jettang.chat.android.view.UnderlineTextView
+    <jiguang.chat.view.UnderlineTextView
         android:id="@+id/section_tv"
         android:background="#E8EDF3"
         android:layout_width="match_parent"

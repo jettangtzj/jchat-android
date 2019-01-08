@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.ContactsView android:id="@+id/contacts_view"
+<jiguang.chat.view.ContactsView android:id="@+id/contacts_view"
                                 xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_height="match_parent">
 
 
-                <com.jettang.chat.android.view.listview.StickyListHeadersListView
+                <jiguang.chat.view.listview.StickyListHeadersListView
                     android:id="@+id/listview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -60,7 +60,7 @@
 
             </RelativeLayout>
 
-        <com.jettang.chat.android.utils.sidebar.SideBar
+        <jiguang.chat.utils.sidebar.SideBar
             android:id="@+id/sidebar"
             android:layout_width="11.33dip"
             android:layout_height="fill_parent"
@@ -72,4 +72,4 @@
     </FrameLayout>
 
 
-</com.jettang.chat.android.view.ContactsView>
+</jiguang.chat.view.ContactsView>

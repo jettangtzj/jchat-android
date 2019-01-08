@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.SendOtherView xmlns:android="http://schemas.android.com/apk/res/android"
+<jiguang.chat.view.SendOtherView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/send_other_view"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -12,4 +12,4 @@
         android:layout_height="match_parent"
         android:divider="@null"/>
 
-</com.jettang.chat.android.view.SendOtherView>
+</jiguang.chat.view.SendOtherView>

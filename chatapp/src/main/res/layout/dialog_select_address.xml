@@ -39,26 +39,26 @@
         android:layout_marginTop="10dip"
         android:orientation="horizontal" >
 
-        <com.jettang.chat.android.utils.citychoose.view.WheelView
+        <jiguang.chat.utils.citychoose.view.WheelView
             android:id="@+id/id_province"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" >
-        </com.jettang.chat.android.utils.citychoose.view.WheelView>
+        </jiguang.chat.utils.citychoose.view.WheelView>
 
-        <com.jettang.chat.android.utils.citychoose.view.WheelView
+        <jiguang.chat.utils.citychoose.view.WheelView
             android:id="@+id/id_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" >
-        </com.jettang.chat.android.utils.citychoose.view.WheelView>
+        </jiguang.chat.utils.citychoose.view.WheelView>
 
-        <com.jettang.chat.android.utils.citychoose.view.WheelView
+        <jiguang.chat.utils.citychoose.view.WheelView
             android:id="@+id/id_district"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" >
-        </com.jettang.chat.android.utils.citychoose.view.WheelView>
+        </jiguang.chat.utils.citychoose.view.WheelView>
     </LinearLayout>
 
     <LinearLayout

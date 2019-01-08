@@ -46,7 +46,7 @@
         android:layout_above="@+id/check_box_rl"
         android:layout_below="@id/title_bar_rl">
 
-        <com.jettang.chat.android.view.ImgBrowserViewPager
+        <jiguang.chat.view.ImgBrowserViewPager
             android:id="@+id/img_browser_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

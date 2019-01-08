@@ -140,7 +140,7 @@
             android:textSize="30dp"
             android:visibility="invisible"/>
 
-        <com.jettang.chat.android.utils.sidebar.SideBar
+        <jiguang.chat.utils.sidebar.SideBar
             android:id="@+id/sidebar"
             android:layout_width="30dp"
             android:layout_height="wrap_content"

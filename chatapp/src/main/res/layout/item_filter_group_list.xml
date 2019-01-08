@@ -10,7 +10,7 @@
         android:layout_height="64dp"
         android:orientation="horizontal"
         android:background="#ffffff">
-        <com.jettang.chat.android.utils.photochoose.SelectableRoundedImageView
+        <jiguang.chat.utils.photochoose.SelectableRoundedImageView
             android:id="@+id/item_iv_group_image"
             android:layout_width="48dp"
             android:layout_height="48dp"

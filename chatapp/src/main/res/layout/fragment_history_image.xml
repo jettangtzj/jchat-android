@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.SendImageView android:id="@+id/send_image_view"
+<jiguang.chat.view.SendImageView android:id="@+id/send_image_view"
                                  xmlns:android="http://schemas.android.com/apk/res/android"
                                  android:layout_width="match_parent"
                                  android:layout_height="match_parent"
                                  android:orientation="vertical">
 
-    <com.jettang.chat.android.activity.historyfile.grideviewheader.StickyGridHeadersGridView
+    <jiguang.chat.activity.historyfile.grideviewheader.StickyGridHeadersGridView
         android:id="@+id/asset_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,4 +16,4 @@
         android:verticalSpacing="3dip"/>
 
 
-</com.jettang.chat.android.view.SendImageView>
+</jiguang.chat.view.SendImageView>

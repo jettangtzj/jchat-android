@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.SelectFriendView android:id="@+id/select_friend_view"
+<jiguang.chat.view.SelectFriendView android:id="@+id/select_friend_view"
                                     xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -132,13 +132,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.jettang.chat.android.view.listview.StickyListHeadersListView
+        <jiguang.chat.view.listview.StickyListHeadersListView
             android:id="@+id/sticky_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@drawable/main_list_divider_line"
             android:dividerHeight="1px">
-        </com.jettang.chat.android.view.listview.StickyListHeadersListView>
+        </jiguang.chat.view.listview.StickyListHeadersListView>
 
         <TextView
             android:id="@+id/tv_noFriend"
@@ -172,7 +172,7 @@
             android:textSize="30dp"
             android:visibility="invisible"/>
 
-        <com.jettang.chat.android.utils.sidebar.SideBar
+        <jiguang.chat.utils.sidebar.SideBar
             android:id="@+id/sidebar"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
@@ -180,4 +180,4 @@
             />
     </FrameLayout>
 
-</com.jettang.chat.android.view.SelectFriendView>
+</jiguang.chat.view.SelectFriendView>

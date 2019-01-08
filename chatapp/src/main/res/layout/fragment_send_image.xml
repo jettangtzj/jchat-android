@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.SendImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<jiguang.chat.view.SendImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/send_image_view"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -19,4 +19,4 @@
         android:numColumns="auto_fit">
     </GridView>
 
-</com.jettang.chat.android.view.SendImageView>
+</jiguang.chat.view.SendImageView>

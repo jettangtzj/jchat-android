@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.jettang.chat.android.utils.photovideo.takevideo.camera.CameraView
+    <jiguang.chat.utils.photovideo.takevideo.camera.CameraView
         android:id="@+id/mCameraView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -68,7 +68,7 @@
             android:src="@drawable/camera_choice"
             android:visibility="invisible"/>
 
-        <com.jettang.chat.android.utils.photovideo.takevideo.camera.CameraProgressBar
+        <jiguang.chat.utils.photovideo.takevideo.camera.CameraProgressBar
             android:id="@+id/mProgressbar"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

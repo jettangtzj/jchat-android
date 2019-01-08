@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
 
-    <com.jettang.chat.android.view.SwipeLayoutConv
+    <jiguang.chat.view.SwipeLayoutConv
         android:id="@+id/swp_layout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -162,5 +162,5 @@
         </RelativeLayout>
 
 
-    </com.jettang.chat.android.view.SwipeLayoutConv>
+    </jiguang.chat.view.SwipeLayoutConv>
 </LinearLayout>

@@ -73,7 +73,7 @@
                 style="@style/info_left_style"
                 android:text="加入黑名单"/>
 
-            <com.jettang.chat.android.view.SlipButton
+            <jiguang.chat.view.SlipButton
                 android:id="@+id/btn_addBlackList"
                 android:layout_width="46dp"
                 android:layout_height="25dp"

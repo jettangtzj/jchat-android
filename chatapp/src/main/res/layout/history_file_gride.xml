@@ -3,7 +3,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-    <com.jettang.chat.android.activity.historyfile.view.MImageView
+    <jiguang.chat.activity.historyfile.view.MImageView
         android:id="@+id/grid_item"
         android:layout_width="fill_parent"
         android:layout_height="100dip"

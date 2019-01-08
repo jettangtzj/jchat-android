@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jettang.chat.android.view.ChatDetailView android:id="@+id/chat_detail_view"
+<jiguang.chat.view.ChatDetailView android:id="@+id/chat_detail_view"
                                   xmlns:android="http://schemas.android.com/apk/res/android"
                                   android:layout_width="match_parent"
                                   android:layout_height="match_parent"
@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <com.jettang.chat.android.view.GroupGridView
+                <jiguang.chat.view.GroupGridView
                     android:id="@+id/chat_detail_group_gv"
                     android:layout_width="match_parent"
                     android:layout_height="47.33dp"
@@ -183,7 +183,7 @@
                     style="@style/ChatDetailItemHit"
                     android:text="@string/set_do_not_disturb"/>
 
-                <com.jettang.chat.android.view.SlipButton
+                <jiguang.chat.view.SlipButton
                     android:id="@+id/no_disturb_slip_btn"
                     android:layout_width="46dp"
                     android:layout_height="25dp"
@@ -207,7 +207,7 @@
                     style="@style/ChatDetailItemHit"
                     android:text="@string/set_to_block"/>
 
-                <com.jettang.chat.android.view.SlipButton
+                <jiguang.chat.view.SlipButton
                     android:id="@+id/block_slip_btn"
                     android:layout_width="46dp"
                     android:layout_height="25dp"
@@ -359,4 +359,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</com.jettang.chat.android.view.ChatDetailView>
+</jiguang.chat.view.ChatDetailView>
