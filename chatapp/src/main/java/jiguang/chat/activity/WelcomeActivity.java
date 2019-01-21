@@ -9,6 +9,11 @@ import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.UserInfo;
 import jiguang.chat.R;
 
+
+/**
+ * 欢迎界面
+ * 广告图
+ */
 public class WelcomeActivity extends AppCompatActivity {
     private Context mContext;
 

@@ -13,9 +13,8 @@ import cn.jpush.im.android.api.JMessageClient;
 import jiguang.chat.R;
 
 /**
- * Created by ${chenyn} on 2017/2/22.
+ * 关于我们界面
  */
-
 public class AboutJChatActivity extends BaseActivity {
 
     private TextView mJChat_version;
@@ -32,18 +31,18 @@ public class AboutJChatActivity extends BaseActivity {
     }
 
     private void initView() {
-        initTitle(true, true, "关于JChat", "", false, "");
+        initTitle(true, true, "关于我们", "", false, "");
         mJChat_version = (TextView) findViewById(R.id.jchat_version);
         mSDK_version = (TextView) findViewById(R.id.sdk_version);
         mJiguang = (RelativeLayout) findViewById(R.id.jiguang);
     }
 
-    //跳转极光官网
+    //跳转官网
     public void initData() {
         mJiguang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("https://www.jiguang.cn");
+                Uri uri = Uri.parse("http://www.baidu.com");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }

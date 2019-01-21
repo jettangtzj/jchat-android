@@ -89,7 +89,7 @@ import jiguang.chat.view.listview.DropDownListView;
 
 
 /**
- * Created by ${chenyn} on 2017/3/26.
+ * 会话列表界面
  */
 
 public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBoardListener, View.OnClickListener {

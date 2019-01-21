@@ -10,6 +10,9 @@ import jiguang.chat.R;
 import jiguang.chat.controller.MainController;
 import jiguang.chat.view.MainView;
 
+/**
+ * 主界面
+ */
 public class MainActivity extends FragmentActivity {
     private MainController mMainController;
     private MainView mMainView;

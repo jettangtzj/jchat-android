@@ -36,7 +36,7 @@ import jiguang.chat.utils.imagepicker.SelectDialog;
 import jiguang.chat.utils.imagepicker.bean.ImageItem;
 
 /**
- * Created by ${chenyn} on 2017/2/21.
+ * 意见反馈界面
  */
 
 public class FeedbackActivity extends BaseActivity implements View.OnClickListener,

@@ -25,6 +25,9 @@ import jiguang.chat.utils.FileHelper;
 import jiguang.chat.utils.SharePreferenceManager;
 import jiguang.chat.utils.swipeback.app.SwipeBackActivity;
 
+/**
+ * 基础的activity
+ */
 public class BaseActivity extends SwipeBackActivity {
 
     protected int mWidth;

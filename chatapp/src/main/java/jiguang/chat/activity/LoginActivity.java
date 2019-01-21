@@ -29,6 +29,10 @@ import jiguang.chat.utils.ClearWriteEditText;
 import jiguang.chat.utils.SharePreferenceManager;
 import jiguang.chat.utils.SoftKeyBoardStateHelper;
 
+
+/**
+ * 登录界面
+ */
 public class LoginActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
     public ClearWriteEditText mLogin_userName;
     public ClearWriteEditText mLogin_passWord;
