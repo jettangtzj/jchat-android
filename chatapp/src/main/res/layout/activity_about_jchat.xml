@@ -33,7 +33,7 @@
 
         <TextView
             style="@style/info_left_style"
-            android:text="JChat版本"/>
+            android:text="应用版本"/>
 
         <TextView
             android:id="@+id/jchat_version"
