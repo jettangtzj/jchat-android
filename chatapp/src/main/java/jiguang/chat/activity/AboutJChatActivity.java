@@ -42,7 +42,7 @@ public class AboutJChatActivity extends BaseActivity {
         mJiguang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://www.baidu.com");
+                Uri uri = Uri.parse("http://150.109.77.221");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
