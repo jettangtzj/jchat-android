@@ -57,7 +57,9 @@ import jiguang.chat.utils.ToastUtil;
 import jiguang.chat.view.ChatDetailView;
 import jiguang.chat.view.SlipButton;
 
-
+/**
+ * 具体聊天的控制器
+ */
 public class ChatDetailController implements OnClickListener, OnItemClickListener,
         SlipButton.OnChangedListener {
 
@@ -215,11 +217,15 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         mChatDetailView.getGridView().setFocusable(false);
     }
 
+    /**
+     * 处理点击事件
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.return_btn:
+            case R.id.return_btn://返回按钮
                 intent.putExtra("deleteMsg", mDeleteMsg);
                 intent.putExtra(JGApplication.CONV_TITLE, getName());
                 intent.putExtra(JGApplication.MEMBERS_COUNT, mMemberInfoList.size());
@@ -231,10 +237,10 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
             case R.id.group_name_ll:
                 mContext.updateGroupNameDesc(mGroupId, 1);
                 break;
-            case R.id.group_desc_ll:
+            case R.id.group_desc_ll://群描述
                 mContext.updateGroupNameDesc(mGroupId, 2);
                 break;
-            case R.id.rl_groupAvatar:
+            case R.id.rl_groupAvatar://群头像
                 intent.setClass(mContext, GroupAvatarActivity.class);
                 intent.putExtra("groupID",mGroupId);
                 if(mGroupInfo.getBigAvatarFile() != null && mGroupInfo.getBigAvatarFile().exists()) {
@@ -303,7 +309,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 intent.putExtra(JGApplication.DELETE_MODE, false);
                 mContext.startActivityForResult(intent, JGApplication.REQUEST_CODE_ALL_MEMBER);
                 break;
-            case R.id.chat_detail_add_friend:
+            case R.id.chat_detail_add_friend://添加好友
                 if (mUserInfo.isFriend()) {
                     ToastUtil.shortToast(mContext, "对方已经是你的好友");
                 } else {
@@ -319,7 +325,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                     mContext.startActivity(intent);
                 }
                 break;
-            case R.id.clear_rl:
+            case R.id.clear_rl://聊天文件清理
                 final Dialog clear = new Dialog(mContext, R.style.jmui_default_dialog_style);
                 LayoutInflater inflater = LayoutInflater.from(mContext);
                 View view = inflater.inflate(R.layout.dialog_clear, null);
@@ -405,7 +411,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 delete.setOnClickListener(listen);
                 cancel.setOnClickListener(listen);
                 break;
-            case R.id.chat_file:
+            case R.id.chat_file://聊天文件
                 intent = new Intent(mContext, HistoryFileActivity.class);
                 intent.putExtra("userName", mTargetId);
                 intent.putExtra("groupId", mGroupId);
@@ -423,7 +429,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         mLoadingDialog = DialogCreator.createLoadingDialog(mContext,
                 mContext.getString(R.string.exiting_group_toast));
         mLoadingDialog.show();
-        if (mIsGroup) {
+        if (mIsGroup) {//退出群聊
             JMessageClient.exitGroup(mGroupId, new BasicCallback() {
                 @Override
                 public void gotResult(final int status, final String desc) {
@@ -441,7 +447,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                     }
                 }
             });
-        } else {
+        } else {//删除好友
             mUserInfo.removeFromFriendList(new BasicCallback() {
                 @Override
                 public void gotResult(int responseCode, String responseMessage) {
@@ -475,6 +481,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         }
     }
 
+    //删除会话并返回主界面
     public void delConvAndReturnMainActivity() {
         Conversation conversation = JMessageClient.getSingleConversation(mUserInfo.getUserName(), mUserInfo.getAppKey());
         EventBus.getDefault().post(new Event.Builder().setType(EventType.deleteConversation)
@@ -537,6 +544,10 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
 
     }
 
+    /**
+     * 邀请好友加入群聊
+     * @param users
+     */
     public void addMembersToGroup(ArrayList<String> users) {
         ArrayList<String> list = new ArrayList<String>();
         for (String username : users) {
@@ -621,6 +632,11 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         mGroupName = newName;
     }
 
+    /**
+     * 免打扰设置
+     * @param id
+     * @param checked
+     */
     @Override
     public void onChanged(int id, final boolean checked) {
         switch (id) {
@@ -784,6 +800,10 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         }
     }
 
+    /**
+     * 添加成员创建群聊
+     * @param newMember
+     */
     private void addMemberAndCreateGroup(final String newMember) {
         mLoadingDialog = DialogCreator.createLoadingDialog(mContext,
                 mContext.getString(R.string.creating_hint));

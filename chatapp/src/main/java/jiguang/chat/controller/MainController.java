@@ -16,14 +16,18 @@ import jiguang.chat.adapter.ViewPagerAdapter;
 import jiguang.chat.view.MainView;
 
 /**
- * Created by ${chenyn} on 2017/2/20.
+ * 主界面
  */
 
 public class MainController implements View.OnClickListener, ViewPager.OnPageChangeListener {
+    //主界面显示
     private MainView mMainView;
     private MainActivity mContext;
+    //会话界面
     private ConversationListFragment mConvListFragment;
+    //me 我的界面
     private MeFragment mMeFragment;
+    //联系人好友界面
     private ContactsFragment mContactsFragment;
 
 
@@ -33,6 +37,7 @@ public class MainController implements View.OnClickListener, ViewPager.OnPageCha
         setViewPager();
     }
 
+    //设置页签
     private void setViewPager() {
         final List<Fragment> fragments = new ArrayList<>();
         // init Fragment
@@ -53,13 +58,13 @@ public class MainController implements View.OnClickListener, ViewPager.OnPageCha
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.actionbar_msg_btn:
+            case R.id.actionbar_msg_btn://会话页签点击
                 mMainView.setCurrentItem(0, false);
                 break;
-            case R.id.actionbar_contact_btn:
+            case R.id.actionbar_contact_btn://联系人点击
                 mMainView.setCurrentItem(1, false);
                 break;
-            case R.id.actionbar_me_btn:
+            case R.id.actionbar_me_btn://我页签点击
                 mMainView.setCurrentItem(2, false);
                 break;
         }
@@ -73,6 +78,7 @@ public class MainController implements View.OnClickListener, ViewPager.OnPageCha
 
     @Override
     public void onPageSelected(int position) {
+        //设置选择
         mMainView.setButtonColor(position);
     }
 
@@ -82,6 +88,7 @@ public class MainController implements View.OnClickListener, ViewPager.OnPageCha
     }
 
     public void sortConvList() {
+        //会话界面排序会话列表
         mConvListFragment.sortConvList();
     }
 

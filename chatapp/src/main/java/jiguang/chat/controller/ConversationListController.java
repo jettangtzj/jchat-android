@@ -28,17 +28,23 @@ import jiguang.chat.utils.SortTopConvList;
 import jiguang.chat.view.ConversationListView;
 
 /**
- * Created by ${chenyn} on 2017/2/20.
+ * 会话列表控制器
  */
 
 public class ConversationListController implements View.OnClickListener,
         AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
+    //会话列表
     private ConversationListView mConvListView;
+    //上下文
     private ConversationListFragment mContext;
+    //宽度
     private int mWidth;
+    //会话列表数据源
     private ConversationListAdapter mListAdapter;
+    //数据
     private List<Conversation> mDatas = new ArrayList<Conversation>();
+    //对话框
     private Dialog mDialog;
 
     public ConversationListController(ConversationListView listView, ConversationListFragment context,
@@ -113,8 +119,7 @@ public class ConversationListController implements View.OnClickListener,
             //这里-3是减掉添加的三个headView
             Conversation conv = mDatas.get(position - 3);
             intent.putExtra(JGApplication.CONV_TITLE, conv.getTitle());
-            //群聊
-            if (conv.getType() == ConversationType.group) {
+            if (conv.getType() == ConversationType.group) {//群聊
                 if (mListAdapter.includeAtMsg(conv)) {
                     intent.putExtra("atMsgId", mListAdapter.getAtMsgId(conv));
                 }
@@ -122,17 +127,19 @@ public class ConversationListController implements View.OnClickListener,
                 if (mListAdapter.includeAtAllMsg(conv)) {
                     intent.putExtra("atAllMsgId", mListAdapter.getatAllMsgId(conv));
                 }
+                //打开具体的聊天窗口
                 long groupId = ((GroupInfo) conv.getTargetInfo()).getGroupID();
                 intent.putExtra(JGApplication.GROUP_ID, groupId);
                 intent.putExtra(JGApplication.DRAFT, getAdapter().getDraft(conv.getId()));
                 intent.setClass(mContext.getActivity(), ChatActivity.class);
                 mContext.getActivity().startActivity(intent);
                 return;
-                //单聊
-            } else {
+            } else {//单聊
+                //打开具体的聊天窗口
                 String targetId = ((UserInfo) conv.getTargetInfo()).getUserName();
                 intent.putExtra(JGApplication.TARGET_ID, targetId);
                 intent.putExtra(JGApplication.TARGET_APP_KEY, conv.getTargetAppKey());
+                //获取草稿数据
                 intent.putExtra(JGApplication.DRAFT, getAdapter().getDraft(conv.getId()));
             }
             intent.setClass(mContext.getActivity(), ChatActivity.class);

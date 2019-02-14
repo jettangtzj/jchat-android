@@ -20,13 +20,13 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置布局
         setContentView(R.layout.activity_main);
-
-
+        //主要显示区域
         mMainView = (MainView) findViewById(R.id.main_view);
         mMainView.initModule();
+        //mvc设置显示控制器
         mMainController = new MainController(mMainView, this);
-
         mMainView.setOnClickListener(mMainController);
         mMainView.setOnPageChangeListener(mMainController);
     }

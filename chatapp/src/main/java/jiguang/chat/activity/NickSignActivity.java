@@ -15,7 +15,7 @@ import android.widget.TextView;
 import jiguang.chat.R;
 
 /**
- * Created by ${chenyn} on 2017/2/27.
+ * 修改个性签名、昵称、群名称、群描述
  */
 
 public class NickSignActivity extends BaseActivity {
@@ -59,18 +59,18 @@ public class NickSignActivity extends BaseActivity {
             public void onClick(View v) {
                 String sign = mEd_sign.getText().toString();
                 Intent intent = new Intent();
-                if (flags == PersonalActivity.FLAGS_NICK) {//3
+                if (flags == PersonalActivity.FLAGS_NICK) {//3 修改昵称
                     intent.putExtra(PersonalActivity.NICK_NAME_KEY, sign);
                     setResult(PersonalActivity.NICK_NAME, intent);//4
-                } else if (flags == PersonalActivity.FLAGS_SIGN) {//2
+                } else if (flags == PersonalActivity.FLAGS_SIGN) {//2 修改个性签名
                     intent.putExtra(PersonalActivity.SIGN_KEY, sign);
                     setResult(PersonalActivity.SIGN, intent);//1
 
-                } else if (flags == ChatDetailActivity.FLAGS_GROUP_DESC) {//71
+                } else if (flags == ChatDetailActivity.FLAGS_GROUP_DESC) {//71 修改群描述
                     intent.putExtra(ChatDetailActivity.GROUP_DESC_KEY, sign);
                     setResult(ChatDetailActivity.GROUP_DESC, intent);//70
 
-                } else if (flags == ChatDetailActivity.FLAGS_GROUP_NAME) {//73
+                } else if (flags == ChatDetailActivity.FLAGS_GROUP_NAME) {//73 修改群名称
                     intent.putExtra(ChatDetailActivity.GROUP_NAME_KEY, sign);
                     setResult(ChatDetailActivity.GROUP_NAME, intent);//72
 
@@ -83,6 +83,10 @@ public class NickSignActivity extends BaseActivity {
 
     int input;
 
+    /**
+     * 初始化 加入文本输入内容监听
+     * @param countNum
+     */
     private void initData(final int countNum) {
         mEd_sign.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,6 +107,9 @@ public class NickSignActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 初始化界面和内容
+     */
     private void initView() {
         mEd_sign = (EditText) findViewById(R.id.ed_sign);
         mLl_nickSign = (LinearLayout) findViewById(R.id.ll_nickSign);

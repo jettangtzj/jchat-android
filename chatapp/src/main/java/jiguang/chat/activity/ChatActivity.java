@@ -162,6 +162,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
 
     }
 
+    //初始化聊天数据
     private void initData() {
         SimpleCommonUtils.initEmoticonsEditText(ekBar.getEtChat());
         Intent intent = getIntent();
@@ -239,11 +240,13 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
             mChatView.setGroupIcon();
         }
 
+        //草稿
         String draft = intent.getStringExtra(DRAFT);
         if (draft != null && !TextUtils.isEmpty(draft)) {
             ekBar.getEtChat().setText(draft);
         }
 
+        //设置数据源
         mChatView.setChatListAdapter(mChatAdapter);
 //        mChatAdapter.initMediaPlayer();
         mChatView.getListView().setOnDropDownListener(new DropDownListView.OnDropDownListener() {
@@ -256,10 +259,12 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         mChatView.setConversation(mConv);
     }
 
+    //初始化界面
     private void initView() {
         initEmoticonsKeyBoardBar();
         initListView();
 
+        //输入框文本变更监听事件
         ekBar.getEtChat().addTextChangedListener(new TextWatcher() {
             private CharSequence temp = "";
 
@@ -303,6 +308,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         });
     }
 
+    //初始化表情快捷键
     private void initEmoticonsKeyBoardBar() {
         ekBar.setAdapter(SimpleCommonUtils.getCommonAdapter(this, emoticonClickListener));
         ekBar.addOnFuncKeyBoardListener(this);
@@ -390,6 +396,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         returnBtn();
     }
 
+    //返回按钮操作
     private void returnBtn() {
         mConv.resetUnreadCount();
         dismissSoftInput();
@@ -402,6 +409,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         finish();
     }
 
+    //隐藏输入键盘
     private void dismissSoftInput() {
         if (mShowSoftInput) {
             if (mImm != null) {
@@ -416,6 +424,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         }
     }
 
+    //启动进入具体聊天界面
     public void startChatDetailActivity(String targetId, String appKey, long groupId) {
         Intent intent = new Intent();
         intent.putExtra(TARGET_ID, targetId);
@@ -425,6 +434,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         startActivityForResult(intent, JGApplication.REQUEST_CODE_CHAT_DETAIL);
     }
 
+    //表情点击事件
     EmoticonClickListener emoticonClickListener = new EmoticonClickListener() {
         @Override
         public void onEmoticonClick(Object o, int actionType, boolean isDelBtn) {
@@ -468,6 +478,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         return super.dispatchKeyEvent(event);
     }
 
+    //初始化列表组件
     private void initListView() {
         lvChat.setAdapter(mChatAdapter);
         lvChat.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -490,7 +501,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         });
     }
 
-
+    //滚动到最底部
     private void scrollToBottom() {
         lvChat.requestLayout();
         lvChat.post(new Runnable() {
@@ -548,6 +559,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
 
     }
 
+    //事件监听处理
     public void onEvent(MessageEvent event) {
         final Message message = event.getMessage();
 
@@ -671,6 +683,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         }
     }
 
+    //更新群组成员人数
     private void refreshGroupNum() {
         Conversation conv = JMessageClient.getGroupConversation(mGroupId);
         GroupInfo groupInfo = (GroupInfo) conv.getTargetInfo();
@@ -692,6 +705,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         }
     }
 
+    //会话列表内容长按事件
     private ChattingListAdapter.ContentLongClickListener longClickListener = new ChattingListAdapter.ContentLongClickListener() {
 
         @Override
@@ -915,6 +929,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         }
     }
 
+    //主进程事件监听
     public void onEventMainThread(ImageEvent event) {
         Intent intent;
         switch (event.getFlag()) {

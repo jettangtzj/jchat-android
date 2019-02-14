@@ -42,19 +42,24 @@ import jiguang.chat.view.ConversationListView;
 import jiguang.chat.view.MenuItemView;
 
 /**
- * Created by ${chenyn} on 2017/2/20.
+ * 会话界面
  */
 
 public class ConversationListFragment extends BaseFragment {
-
+    //上下文
     private Activity mContext;
+    //根显示区域
     private View mRootView;
+    //会话列表
     private ConversationListView mConvListView;
+    //会话列表控制器
     private ConversationListController mConvListController;
+    //多线程
     private HandlerThread mThread;
     private static final int REFRESH_CONVERSATION_LIST = 0x3000;
     private static final int DISMISS_REFRESH_HEADER = 0x3001;
     private static final int ROAM_COMPLETED = 0x3002;
+    //后台进程
     private BackgroundHandler mBackgroundHandler;
     private View mMenuView;
     private PopupWindow mMenuPopWindow;
@@ -69,7 +74,7 @@ public class ConversationListFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         isCreate = true;
         mContext = this.getActivity();
-
+        //设置布局样式
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         mRootView = layoutInflater.inflate(R.layout.fragment_conv_list,
                 (ViewGroup) getActivity().findViewById(R.id.main_view), false);
@@ -91,7 +96,7 @@ public class ConversationListFragment extends BaseFragment {
         mMenuController = new MenuItemController(this);
         mMenuItemView.setListeners(mMenuController);
 
-
+        //网络连接管理
         ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeInfo = manager.getActiveNetworkInfo();
         if (null == activeInfo) {
@@ -105,6 +110,7 @@ public class ConversationListFragment extends BaseFragment {
 
     }
 
+    //初始化网络接收
     private void initReceiver() {
         mReceiver = new NetworkReceiver();
         IntentFilter filter = new IntentFilter();
@@ -135,6 +141,7 @@ public class ConversationListFragment extends BaseFragment {
 
     }
 
+    //弹出提示框
     public void showPopWindow() {
         mMenuPopWindow.setTouchable(true);
         mMenuPopWindow.setOutsideTouchable(true);
@@ -152,7 +159,7 @@ public class ConversationListFragment extends BaseFragment {
     public void onEvent(MessageEvent event) {
         mConvListView.setUnReadMsg(JMessageClient.getAllUnReadMsgCount());
         Message msg = event.getMessage();
-        if (msg.getTargetType() == ConversationType.group) {
+        if (msg.getTargetType() == ConversationType.group) {//群组消息
             long groupId = ((GroupInfo) msg.getTargetInfo()).getGroupID();
             Conversation conv = JMessageClient.getGroupConversation(groupId);
             if (conv != null && mConvListController != null) {
@@ -164,12 +171,14 @@ public class ConversationListFragment extends BaseFragment {
                     JGApplication.isAtall.put(groupId, true);
                     mConvListController.getAdapter().putAtAllConv(conv, msg.getId());
                 }
+                //通知界面刷新会话列表
                 mBackgroundHandler.sendMessage(mBackgroundHandler.obtainMessage(REFRESH_CONVERSATION_LIST,
                         conv));
             }
-        } else {
+        } else {//个人消息
             final UserInfo userInfo = (UserInfo) msg.getTargetInfo();
             String targetId = userInfo.getUserName();
+            //获取个人最新的那条消息
             Conversation conv = JMessageClient.getSingleConversation(targetId, userInfo.getAppKey());
             if (conv != null && mConvListController != null) {
                 mContext.runOnUiThread(new Runnable() {
@@ -180,6 +189,7 @@ public class ConversationListFragment extends BaseFragment {
                                 @Override
                                 public void gotResult(int responseCode, String responseMessage, Bitmap avatarBitmap) {
                                     if (responseCode == 0) {
+                                        //数据更新通知
                                         mConvListController.getAdapter().notifyDataSetChanged();
                                     }
                                 }
@@ -187,6 +197,7 @@ public class ConversationListFragment extends BaseFragment {
                         }
                     }
                 });
+                //通知界面刷新消息列表
                 mBackgroundHandler.sendMessage(mBackgroundHandler.obtainMessage(REFRESH_CONVERSATION_LIST, conv));
             }
         }
@@ -235,6 +246,7 @@ public class ConversationListFragment extends BaseFragment {
         }
     }
 
+    //后台处理进程
     private class BackgroundHandler extends Handler {
         public BackgroundHandler(Looper looper) {
             super(looper);
@@ -264,22 +276,22 @@ public class ConversationListFragment extends BaseFragment {
         }
     }
 
+    //主进程监听事件处理
     public void onEventMainThread(Event event) {
         switch (event.getType()) {
-            case createConversation:
+            case createConversation://创建会话
                 Conversation conv = event.getConversation();
                 if (conv != null) {
                     mConvListController.getAdapter().addNewConversation(conv);
                 }
                 break;
-            case deleteConversation:
+            case deleteConversation://删除会话
                 conv = event.getConversation();
                 if (null != conv) {
                     mConvListController.getAdapter().deleteConversation(conv);
                 }
                 break;
-            //收到保存为草稿事件
-            case draft:
+            case draft://收到保存为草稿事件
                 conv = event.getConversation();
                 String draft = event.getDraft();
                 //如果草稿内容不为空，保存，并且置顶该会话
@@ -291,7 +303,7 @@ public class ConversationListFragment extends BaseFragment {
                     mConvListController.getAdapter().delDraftFromMap(conv);
                 }
                 break;
-            case addFriend:
+            case addFriend://加好友
                 break;
         }
     }

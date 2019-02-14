@@ -31,20 +31,24 @@ import jiguang.chat.utils.ToastUtil;
 import jiguang.chat.view.ChatDetailView;
 
 /**
- * 会话单一窗口
+ * 具体的会话聊天界面
  */
 
 public class ChatDetailActivity extends BaseActivity {
 
+
     private static final String TAG = "ChatDetailActivity";
 
+    //聊天内容显示区域
     private ChatDetailView mChatDetailView;
+    //聊天控制器
     private ChatDetailController mChatDetailController;
+    //UI的handler
     private UIHandler mUIHandler = new UIHandler(this);
     public final static String START_FOR_WHICH = "which";
     private final static int GROUP_NAME_REQUEST_CODE = 1;
     private final static int MY_NAME_REQUEST_CODE = 2;
-    private static final int ADD_FRIEND_REQUEST_CODE = 3;
+    private final static int ADD_FRIEND_REQUEST_CODE = 3;
 
     public static final int GROUP_DESC = 70;
     public static final int FLAGS_GROUP_DESC = 71;
@@ -77,6 +81,9 @@ public class ChatDetailActivity extends BaseActivity {
     }
 
 
+    /**
+     * 返回按钮
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
@@ -87,6 +94,7 @@ public class ChatDetailActivity extends BaseActivity {
         finish();
         super.onBackPressed();
     }
+
 
     private void dismissSoftInput() {
         //隐藏软键盘
@@ -100,13 +108,18 @@ public class ChatDetailActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 从NickSignActivity更新群名称或群描述然后返回
+     * @param groupId
+     * @param nameOrDesc
+     */
     public void updateGroupNameDesc(long groupId, int nameOrDesc) {
         this.groupID = groupId;
         Intent intent = new Intent(ChatDetailActivity.this, NickSignActivity.class);
-        if (nameOrDesc == 1) {
+        if (nameOrDesc == 1) {//群名称
             intent.setFlags(FLAGS_GROUP_NAME);
             intent.putExtra("group_name", mGroupName);
-        } else {
+        } else {//群描述
             intent.setFlags(FLAGS_GROUP_DESC);
             intent.putExtra("group_desc", mGroupDesc);
         }
@@ -223,6 +236,9 @@ public class ChatDetailActivity extends BaseActivity {
     }
 
 
+    /**
+     * 在ChatDetailController中删除或退出后返回主界面
+     */
     public void startMainActivity() {
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -231,6 +247,12 @@ public class ChatDetailActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    /**
+     * 在ChatDetailController中添加成员并创建群聊
+     * @param groupID
+     * @param groupName
+     * @param member
+     */
     public void startChatActivity(long groupID, String groupName, int member) {
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
