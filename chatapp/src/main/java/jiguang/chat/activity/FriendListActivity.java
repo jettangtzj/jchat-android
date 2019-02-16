@@ -33,7 +33,7 @@ import jiguang.chat.utils.sidebar.SideBar;
 import jiguang.chat.view.listview.StickyListHeadersListView;
 
 /**
- * Created by ${chenyn} on 2017/9/21.
+ * 好友列表
  */
 
 public class FriendListActivity extends BaseActivity {
@@ -58,30 +58,37 @@ public class FriendListActivity extends BaseActivity {
 
     private void initView() {
         View inflate = LayoutInflater.from(this).inflate(R.layout.conversation_head_view, null);
+        //好友列表
         mFriend_listView = (StickyListHeadersListView) findViewById(R.id.friend_listView);
+        //取消
         mTv_cancel = (TextView) findViewById(R.id.tv_cancel);
+        //搜索区域
         mSearchTitle = (LinearLayout) inflate.findViewById(R.id.search_title);
         mSidebar = (SideBar) findViewById(R.id.sidebar);
 
         mFriend_listView.addHeaderView(mSearchTitle);
     }
 
+    //初始化数据
     private void initData() {
-
+        //本机用户
         final UserEntry user = UserEntry.getUser(JMessageClient.getMyInfo().getUserName(),
                 JMessageClient.getMyInfo().getAppKey());
+        //获取其好友列表
         mList = user.getFriends();
+        //按姓名拼音排序
         Collections.sort(mList, new PinyinComparator());
+        //设置数据源
         mAdapter = new FriendListAdapter(mContext, mList);
         mFriend_listView.setAdapter(mAdapter);
-
+        //取消按钮事件
         mTv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
+        //列表单行选中事件
         mFriend_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,6 +102,7 @@ public class FriendListActivity extends BaseActivity {
             }
         });
 
+        //搜索按钮事件 进入SearchFriendBusinessActivity进行搜索
         mSearchTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +115,7 @@ public class FriendListActivity extends BaseActivity {
         });
     }
 
+    //设置发送名片消息
     private void setBusinessCard(final FriendEntry entry, final Conversation conversation) {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override

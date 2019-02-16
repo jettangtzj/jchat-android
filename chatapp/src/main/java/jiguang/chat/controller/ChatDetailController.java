@@ -122,8 +122,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         UserInfo myInfo = JMessageClient.getMyInfo();
         mMyNickName = myInfo.getNickname();
         mMyUsername = myInfo.getUserName();
-        // 是群组
-        if (mGroupId != 0) {
+        if (mGroupId != 0) {// 是群组
             mChatDetailView.setTitle("群组信息");
             mIsGroup = true;
             //获得群组基本信息：群主ID、群组名、群组人数
@@ -169,8 +168,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 mChatDetailView.isLoadMoreShow(false);
             }
 
-            // 是单聊
-        } else {
+        } else {// 是单聊
             mChatDetailView.setTitle("聊天设置");
             Conversation conv = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
             mUserInfo = (UserInfo) conv.getTargetInfo();

@@ -43,7 +43,8 @@ import jiguang.chat.view.listview.StickyListHeadersListView;
 
 
 /**
- * Created by ${chenyn} on 2017/5/3.
+ * 创建群聊
+ *
  */
 
 public class CreateGroupActivity extends BaseActivity implements View.OnClickListener, TextWatcher {

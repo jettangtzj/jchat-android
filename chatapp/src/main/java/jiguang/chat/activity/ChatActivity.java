@@ -299,8 +299,10 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
             @Override
             public void onTextChanged(CharSequence s, int start, int count, int after) {
                 temp = s;
+                //@某人
                 if (s.length() > 0 && after >= 1 && s.subSequence(start, start + 1).charAt(0) == '@' && !mLongClick) {
                     if (null != mConv && mConv.getType() == ConversationType.group) {
+                        //选择@的成员
                         ChooseAtMemberActivity.show(ChatActivity.this, ekBar.getEtChat(), mConv.getTargetId());
                     }
                 }
@@ -933,7 +935,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     public void onEventMainThread(ImageEvent event) {
         Intent intent;
         switch (event.getFlag()) {
-            case JGApplication.IMAGE_MESSAGE:
+            case JGApplication.IMAGE_MESSAGE://图片
                 int from = PickImageActivity.FROM_LOCAL;
                 int requestCode = RequestCode.PICK_IMAGE;
                 if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -944,7 +946,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
                             true, false, 0, 0);
                 }
                 break;
-            case JGApplication.TAKE_PHOTO_MESSAGE:
+            case JGApplication.TAKE_PHOTO_MESSAGE://拍照
                 if ((ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.RECORD_AUDIO)
@@ -955,7 +957,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
                     startActivityForResult(intent, RequestCode.TAKE_PHOTO);
                 }
                 break;
-            case JGApplication.TAKE_LOCATION:
+            case JGApplication.TAKE_LOCATION://gps位置
                 if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "请在应用管理中打开“位置”访问权限！", Toast.LENGTH_LONG).show();
@@ -968,7 +970,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
                     startActivityForResult(intent, JGApplication.REQUEST_CODE_SEND_LOCATION);
                 }
                 break;
-            case JGApplication.FILE_MESSAGE:
+            case JGApplication.FILE_MESSAGE://文件
                 if (ContextCompat.checkSelfPermission(this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -982,7 +984,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
                     startActivityForResult(intent, JGApplication.REQUEST_CODE_SEND_FILE);
                 }
                 break;
-            case JGApplication.BUSINESS_CARD:
+            case JGApplication.BUSINESS_CARD://个人名片
                 intent = new Intent(mContext, FriendListActivity.class);
                 intent.putExtra("isSingle", mIsSingle);
                 intent.putExtra("userId", mTargetId);

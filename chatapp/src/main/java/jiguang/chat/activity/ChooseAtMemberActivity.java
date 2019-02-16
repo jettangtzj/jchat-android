@@ -95,6 +95,7 @@ public class ChooseAtMemberActivity extends BaseActivity {
             }
         });
 
+        //选择某人
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -117,6 +118,7 @@ public class ChooseAtMemberActivity extends BaseActivity {
             }
         });
 
+        //@全部人
         mLl_groupAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +130,7 @@ public class ChooseAtMemberActivity extends BaseActivity {
             }
         });
 
+        //搜索
         mSearch_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
