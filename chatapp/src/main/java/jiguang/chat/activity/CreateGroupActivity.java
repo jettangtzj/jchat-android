@@ -138,12 +138,12 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.jmui_cancel_btn:
+            case R.id.jmui_cancel_btn://点击取消
                 EmoticonsKeyboardUtils.closeSoftKeyboard(this);
                 finish();
                 break;
-            case R.id.finish_btn:
-                //拿到所选择的userName
+            case R.id.finish_btn://拿到所选择的userName,点击完成
+
                 final ArrayList<String> selectedUser = mAdapter.getSelectedUser();
                 mLoadingDialog = DialogCreator.createLoadingDialog(mContext,
                         mContext.getString(R.string.creating_hint));
@@ -182,6 +182,11 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 创建群聊组
+     * @param groupId
+     * @param groupMembersSize
+     */
     private void createGroup(long groupId, int groupMembersSize) {
         Conversation groupConversation = JMessageClient.getGroupConversation(groupId);
         if (groupConversation == null) {
@@ -216,6 +221,10 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
 
     List<FriendEntry> filterDateList;
 
+    /**
+     * 姓名首字母分组排序
+     * @param filterStr
+     */
     private void filterData(final String filterStr) {
         filterDateList = new ArrayList<>();
         if (!TextUtils.isEmpty(filterStr)) {
