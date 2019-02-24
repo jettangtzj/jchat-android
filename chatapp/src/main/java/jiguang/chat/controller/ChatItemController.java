@@ -81,6 +81,10 @@ import jiguang.chat.utils.SimpleCommonUtils;
 import jiguang.chat.utils.ToastUtil;
 
 
+/**
+ * 聊天单条信息的控制器
+ */
+
 public class ChatItemController {
 
     private ChattingListAdapter mAdapter;

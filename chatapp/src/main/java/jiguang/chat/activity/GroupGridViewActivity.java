@@ -27,7 +27,7 @@ import jiguang.chat.application.JGApplication;
 import jiguang.chat.utils.DialogCreator;
 
 /**
- * Created by ${chenyn} on 2017/5/8.
+ * 群聊 聊天设置 群成员界面
  */
 
 public class GroupGridViewActivity extends BaseActivity {

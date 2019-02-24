@@ -33,7 +33,7 @@ import jiguang.chat.utils.sidebar.SideBar;
 import jiguang.chat.view.listview.StickyListHeadersListView;
 
 /**
- * 好友列表
+ * 供选择的好友列表
  */
 
 public class FriendListActivity extends BaseActivity {

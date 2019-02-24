@@ -27,7 +27,7 @@ import jiguang.chat.utils.NativeImageLoader;
 import jiguang.chat.view.FriendInfoView;
 
 /**
- * Created by ${chenyn} on 2017/3/22.
+ * 好友信息界面
  */
 
 public class FriendInfoActivity extends BaseActivity {

@@ -24,7 +24,7 @@ import jiguang.chat.R;
 import jiguang.chat.utils.SharePreferenceManager;
 
 /**
- * Created by ${chenyn} on 2017/5/19.
+ * 文件下载
  */
 
 public class DownLoadActivity extends Activity {
@@ -58,13 +58,15 @@ public class DownLoadActivity extends Activity {
         mBtnDown.setTextColor(Color.WHITE);
 
 
+        //下载按钮点击
         mBtnDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mBtnDown.setVisibility(View.GONE);
-                mProcess.setVisibility(View.VISIBLE);
-                mProcessBar.setVisibility(View.VISIBLE);
+                mBtnDown.setVisibility(View.GONE);//隐藏按钮
+                mProcess.setVisibility(View.VISIBLE);//显示进度
+                mProcessBar.setVisibility(View.VISIBLE);//显示进度条
+                //显示下载百分比
                 mMessage.setOnContentDownloadProgressCallback(new ProgressUpdateCallback() {
 
                     @Override
@@ -74,7 +76,7 @@ public class DownLoadActivity extends Activity {
                         mHandler.post(progressBar);
                     }
                 });
-
+                //文件下载完成事件
                 mFileContent.downloadFile(mMessage, new DownloadCompletionCallback() {
                     @Override
                     public void onComplete(int responseCode, String responseMessage, File file) {
@@ -97,6 +99,7 @@ public class DownLoadActivity extends Activity {
         });
     }
 
+    //设置进度条处理
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
@@ -105,6 +108,7 @@ public class DownLoadActivity extends Activity {
         }
     };
 
+    //进度条显示变化事件
     Runnable progressBar = new Runnable() {
         @Override
         public void run() {
@@ -118,6 +122,7 @@ public class DownLoadActivity extends Activity {
         }
     };
 
+    //计量单位转换
     private String byteToMB(long size) {
         long kb = 1024;
         long mb = kb * 1024;

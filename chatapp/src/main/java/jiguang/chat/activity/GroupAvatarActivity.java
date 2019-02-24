@@ -19,7 +19,7 @@ import jiguang.chat.utils.photochoose.ChoosePhoto;
 import jiguang.chat.utils.photochoose.PhotoUtils;
 
 /**
- * Created by ${chenyn} on 2017/9/18.
+ * 群聊头像界面
  */
 
 public class GroupAvatarActivity extends BaseActivity implements View.OnClickListener {

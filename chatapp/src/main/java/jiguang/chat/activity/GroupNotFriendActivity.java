@@ -30,7 +30,7 @@ import jiguang.chat.utils.DialogCreator;
 import jiguang.chat.utils.ToastUtil;
 
 /**
- * Created by ${chenyn} on 2017/5/10.
+ * 群成员信息查看界面 两者之间不是好友关系
  */
 
 public class GroupNotFriendActivity extends BaseActivity implements View.OnClickListener {

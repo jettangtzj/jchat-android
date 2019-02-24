@@ -20,7 +20,7 @@ import jiguang.chat.utils.HandleResponseCode;
 import jiguang.chat.utils.ToastUtil;
 
 /**
- * Created by ${chenyn} on 2017/4/26.
+ *  从通讯录进入的群组列表
  */
 
 public class GroupActivity extends BaseActivity {
@@ -51,10 +51,12 @@ public class GroupActivity extends BaseActivity {
         initData();
     }
 
+    //初始化数据
     private void initData() {
         final Dialog dialog = DialogCreator.createLoadingDialog(this, this.getString(R.string.jmui_loading));
         dialog.show();
         final List<GroupInfo> infoList = new ArrayList<>();
+        //获取群组信息
         JMessageClient.getGroupIDList(new GetGroupIDListCallback() {
             @Override
             public void gotResult(int responseCode, String responseMessage, final List<Long> groupIDList) {
@@ -62,6 +64,7 @@ public class GroupActivity extends BaseActivity {
                     final int[] groupSize = {groupIDList.size()};
                     if (groupIDList.size() > 0) {
                         for (Long id : groupIDList) {
+                            //获取群详细信息
                             JMessageClient.getGroupInfo(id, new GetGroupInfoCallback() {
                                 @Override
                                 public void gotResult(int i, String s, GroupInfo groupInfo) {

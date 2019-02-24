@@ -42,6 +42,7 @@ import jiguang.chat.utils.imagepicker.bean.ImageItem;
 public class FeedbackActivity extends BaseActivity implements View.OnClickListener,
         ImagePickerAdapter.OnRecyclerViewItemClickListener {
 
+    //最大输入字符数
     private static final int MAX_COUNT = 300;
     private static final String JIGUANG_IM_ACCOUNT = "feedback_Android";
     private EditText mEd_feedback;

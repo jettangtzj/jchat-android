@@ -31,7 +31,7 @@ import jiguang.chat.utils.ToastUtil;
 import jiguang.chat.view.ChatDetailView;
 
 /**
- * 具体的会话聊天界面
+ * 聊天的具体信息界面
  */
 
 public class ChatDetailActivity extends BaseActivity {
@@ -39,7 +39,7 @@ public class ChatDetailActivity extends BaseActivity {
 
     private static final String TAG = "ChatDetailActivity";
 
-    //聊天内容显示区域
+    //信息显示区域
     private ChatDetailView mChatDetailView;
     //聊天控制器
     private ChatDetailController mChatDetailController;

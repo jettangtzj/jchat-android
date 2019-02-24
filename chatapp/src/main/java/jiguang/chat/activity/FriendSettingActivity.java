@@ -31,7 +31,7 @@ import jiguang.chat.utils.dialog.LoadDialog;
 import jiguang.chat.view.SlipButton;
 
 /**
- * Created by ${chenyn} on 2017/5/7.
+ * 好友的设置界面 备注名、是否黑名单、发送名片
  */
 
 public class FriendSettingActivity extends BaseActivity implements SlipButton.OnChangedListener, View.OnClickListener {

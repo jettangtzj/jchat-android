@@ -89,7 +89,7 @@ import jiguang.chat.view.listview.DropDownListView;
 
 
 /**
- * 会话列表界面
+ * 具体的聊天界面
  */
 
 public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBoardListener, View.OnClickListener {
@@ -373,10 +373,10 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.jmui_return_btn:
+            case R.id.jmui_return_btn://左上返回
                 returnBtn();
                 break;
-            case R.id.jmui_right_btn:
+            case R.id.jmui_right_btn://右上进入聊天信息详情界面
                 startChatDetailActivity(mTargetId, mTargetAppKey, mGroupId);
                 break;
             case R.id.jmui_at_me_btn:
@@ -533,15 +533,18 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     @Override
     protected void onResume() {
         String targetId = getIntent().getStringExtra(TARGET_ID);
-        if (!mIsSingle) {
+        if (!mIsSingle) {//群聊
+            //群聊ID
             long groupId = getIntent().getLongExtra(GROUP_ID, 0);
             if (groupId != 0) {
                 JGApplication.isAtMe.put(groupId, false);
                 JGApplication.isAtall.put(groupId, false);
+                //进入群聊
                 JMessageClient.enterGroupConversation(groupId);
             }
-        } else if (null != targetId) {
+        } else if (null != targetId) {//单聊
             String appKey = getIntent().getStringExtra(TARGET_APP_KEY);
+            //进入单聊
             JMessageClient.enterSingleConversation(targetId, appKey);
         }
 
@@ -571,7 +574,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
             long groupId = groupInfo.getGroupID();
             EventNotificationContent.EventNotificationType type = ((EventNotificationContent) message
                     .getContent()).getEventNotificationType();
-            if (groupId == mGroupId) {
+            if (groupId == mGroupId) {//群聊中的事件处理
                 switch (type) {
                     case group_member_added:
                         //添加群成员事件
@@ -612,6 +615,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
 
                         break;
                     case group_member_exit:
+                        //群成员退出群事件
                         EventNotificationContent content = (EventNotificationContent) message.getContent();
                         if (content.getUserNames().contains(JMessageClient.getMyInfo().getUserName())) {
                             mChatAdapter.notifyDataSetChanged();

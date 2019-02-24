@@ -58,7 +58,7 @@ import jiguang.chat.view.ChatDetailView;
 import jiguang.chat.view.SlipButton;
 
 /**
- * 具体聊天的控制器
+ * 聊天信息界面的控制器
  */
 public class ChatDetailController implements OnClickListener, OnItemClickListener,
         SlipButton.OnChangedListener {

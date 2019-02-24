@@ -17,7 +17,7 @@ import jiguang.chat.utils.dialog.LoadDialog;
 import jiguang.chat.view.SlipButton;
 
 /**
- * Created by ${chenyn} on 2017/9/26.
+ * 非好友关系的信息设置界面 发送名片 加入黑名单
  */
 
 public class NotFriendSettingActivity extends BaseActivity implements SlipButton.OnChangedListener{

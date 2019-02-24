@@ -15,7 +15,7 @@ import jiguang.chat.adapter.ChattingListAdapter;
 import jiguang.chat.view.listview.DropDownListView;
 
 /**
- * Created by ${chenyn} on 2017/3/28.
+ * 聊天界面布局和组件
  */
 
 public class ChatView extends RelativeLayout {
@@ -103,12 +103,14 @@ public class ChatView extends RelativeLayout {
         mRightBtn.setVisibility(View.VISIBLE);
     }
 
+    //设置聊天顶部显示文字
     public void setChatTitle(int id, int count) {
         mChatTitle.setText(id);
         mGroupNumTv.setText("(" + count + ")");
         mGroupNumTv.setVisibility(View.VISIBLE);
     }
 
+    //设置聊天顶部显示文字
     public void setChatTitle(int id) {
         mChatTitle.setText(id);
     }
@@ -117,16 +119,19 @@ public class ChatView extends RelativeLayout {
     }
 
 
-    //设置群聊名字
+    //设置聊天顶部显示文字
     public void setChatTitle(String name, int count) {
         mChatTitle.setText(name);
         mGroupNumTv.setText("(" + count + ")");
         mGroupNumTv.setVisibility(View.VISIBLE);
     }
 
+    //设置聊天顶部显示文字
     public void setChatTitle(String title) {
         mChatTitle.setText(title);
     }
+
+    //隐藏群聊人数
     public void dismissGroupNum() {
         mGroupNumTv.setVisibility(View.GONE);
     }
