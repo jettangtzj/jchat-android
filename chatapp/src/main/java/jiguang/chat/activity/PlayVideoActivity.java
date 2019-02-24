@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 import jiguang.chat.R;
 
-
+/**
+ * 播放界面
+ */
 public class PlayVideoActivity extends BaseActivity {
 
     private VideoView mPlayVideoVV;

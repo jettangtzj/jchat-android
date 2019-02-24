@@ -23,6 +23,7 @@ import jiguang.chat.utils.ToastUtil;
 
 /**
  * Created by ${chenyn} on 2017/3/14.
+ * 发送加好友验证信息
  */
 
 public class VerificationActivity extends BaseActivity {

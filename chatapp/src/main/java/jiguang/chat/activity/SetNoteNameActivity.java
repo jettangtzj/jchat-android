@@ -19,6 +19,7 @@ import jiguang.chat.utils.pinyin.HanyuPinyin;
 
 /**
  * Created by ${chenyn} on 2017/5/7.
+ * 设置备注名
  */
 
 public class SetNoteNameActivity extends BaseActivity {

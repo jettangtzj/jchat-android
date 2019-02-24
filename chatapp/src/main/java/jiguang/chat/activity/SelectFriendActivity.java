@@ -10,7 +10,9 @@ import jiguang.chat.controller.SelectFriendController;
 import jiguang.chat.utils.SoftKeyBoardStateHelper;
 import jiguang.chat.view.SelectFriendView;
 
-
+/**
+ * 选择好友邀请加入群聊
+ */
 public class SelectFriendActivity extends BaseActivity{
 
     private SelectFriendView mView;

@@ -30,6 +30,7 @@ import jiguang.chat.utils.SharePreferenceManager;
 
 /**
  * Created by ${chenyn} on 2017/3/21.
+ * 加好友验证 个人信息显示 是否同意
  */
 
 public class SearchFriendDetailActivity extends BaseActivity {

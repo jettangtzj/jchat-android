@@ -48,7 +48,9 @@ import jiguang.chat.utils.photochoose.SelectableRoundedImageView;
 import jiguang.chat.utils.pinyin.CharacterParser;
 import jiguang.chat.utils.query.TextSearcher;
 
-
+/**
+ * 联系人搜索
+ */
 public class SearchFriendBusinessActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private String mFilterString;

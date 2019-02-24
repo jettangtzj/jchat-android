@@ -42,6 +42,7 @@ import jiguang.chat.utils.query.TextSearcher;
 
 /**
  * Created by ${chenyn} on 2017/6/22.
+ * 搜索的公开群结果列表
  */
 
 public class SearchGroupActivity extends BaseActivity implements View.OnClickListener {

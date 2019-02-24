@@ -12,6 +12,10 @@ import jiguang.chat.R;
 import jiguang.chat.utils.CommonUtils;
 import jiguang.chat.utils.ToastUtil;
 
+/**
+ * 修改密码界面
+ *
+ */
 public class ResetPasswordActivity extends BaseActivity {
 
     private EditText mOld_password;

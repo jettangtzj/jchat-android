@@ -43,7 +43,7 @@ import jiguang.chat.utils.pinyin.CharacterParser;
 import jiguang.chat.utils.query.TextSearcher;
 
 /**
- * Created by ${chenyn} on 2017/7/13.
+ * @ 别人的时候，将他搜索出来
  */
 
 public class SearchAtMemberActivity extends BaseActivity implements View.OnClickListener {

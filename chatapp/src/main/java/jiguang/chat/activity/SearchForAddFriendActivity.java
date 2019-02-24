@@ -28,7 +28,7 @@ import jiguang.chat.utils.dialog.LoadDialog;
 import jiguang.chat.utils.photochoose.SelectableRoundedImageView;
 
 /**
- * Created by ${chenyn} on 2017/3/13.
+ * 搜索添加好友
  */
 
 public class SearchForAddFriendActivity extends BaseActivity implements View.OnClickListener {

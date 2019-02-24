@@ -34,7 +34,7 @@ import jiguang.chat.utils.photochoose.ChoosePhoto;
 import jiguang.chat.utils.photochoose.PhotoUtils;
 
 /**
- * Created by ${chenyn} on 2017/2/23.
+ * 本账号个人信息
  */
 
 public class PersonalActivity extends BaseActivity implements SelectAddressInterface, View.OnClickListener {

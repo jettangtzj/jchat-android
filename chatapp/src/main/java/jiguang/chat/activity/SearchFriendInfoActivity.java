@@ -12,6 +12,7 @@ import jiguang.chat.model.InfoModel;
 
 /**
  * Created by ${chenyn} on 2017/3/14.
+ * 搜索出来的人员个人信息 按钮为加好友
  */
 
 public class SearchFriendInfoActivity extends BaseActivity implements View.OnClickListener {

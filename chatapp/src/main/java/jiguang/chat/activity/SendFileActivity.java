@@ -9,7 +9,9 @@ import jiguang.chat.R;
 import jiguang.chat.controller.SendFileController;
 import jiguang.chat.view.SendFileView;
 
-
+/**
+ * 选择发送的文件
+ */
 public class SendFileActivity extends FragmentActivity {
 
     private SendFileView mView;

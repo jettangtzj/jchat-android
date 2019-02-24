@@ -37,7 +37,7 @@ import jiguang.chat.pickerimage.utils.StorageUtil;
 import jiguang.chat.utils.zxing.encode.EncodingHandler;
 
 /**
- * Created by ${chenyn} on 2017/8/16.
+ * 个人二维码
  */
 
 public class Person2CodeActivity extends BaseActivity {
