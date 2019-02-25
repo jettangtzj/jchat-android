@@ -22,7 +22,7 @@ import jiguang.chat.view.listview.StickyListHeadersListView;
 
 
 /**
- * Created by ${chenyn} on 2017/3/13.
+ * 通讯录显示界面
  */
 
 public class ContactsView extends LinearLayout {

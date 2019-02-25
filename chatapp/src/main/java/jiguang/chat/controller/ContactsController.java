@@ -31,7 +31,7 @@ import jiguang.chat.utils.sidebar.SideBar;
 import jiguang.chat.view.ContactsView;
 
 /**
- * Created by ${chenyn} on 2017/2/20.
+ * 通信录显示控制器
  */
 
 public class ContactsController implements View.OnClickListener, SideBar.OnTouchingLetterChangedListener {
@@ -74,11 +74,14 @@ public class ContactsController implements View.OnClickListener, SideBar.OnTouch
         }
     }
 
-
+    /**
+     * 初始化联系人数据
+     */
     public void initContacts() {
         final UserEntry user = UserEntry.getUser(JMessageClient.getMyInfo().getUserName(),
                 JMessageClient.getMyInfo().getAppKey());
         mContactsView.showLoadingHeader();
+        //得到好友列表数据
         ContactManager.getFriendList(new GetUserInfoListCallback() {
             @Override
             public void gotResult(int responseCode, String responseMessage, List<UserInfo> userInfoList) {
