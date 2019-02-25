@@ -56,6 +56,9 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
     private ImageButton mReturnBtn;
     private ImageView mIvMore;
 
+    //newchange
+    private RelativeLayout relativeLayout_nameRL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,7 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
         initData();
     }
 
+    //数据初始化
     private void initData() {
         final Dialog dialog = DialogCreator.createLoadingDialog(this, this.getString(R.string.jmui_loading));
         dialog.show();
@@ -153,6 +157,10 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
         mTv_additionalMsg = (TextView) findViewById(R.id.tv_additionalMsg);
         mLl_additional = (LinearLayout) findViewById(R.id.ll_additional);
 
+        //newchange 用户名显示区域 设置为不可见
+        relativeLayout_nameRL = (RelativeLayout) findViewById(R.id.relativeLayout_name);
+        relativeLayout_nameRL.setVisibility(View.GONE);
+
         mBtn_add_friend.setOnClickListener(this);
         mBtn_send_message.setOnClickListener(this);
         mReturnBtn.setOnClickListener(this);
@@ -171,22 +179,30 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.btn_add_friend:
+            case R.id.btn_add_friend://加为好友
                 if (mUserInfo.isFriend()) {
                     ToastUtil.shortToast(GroupNotFriendActivity.this, "对方已经是你的好友");
                 } else {
-                    intent.setClass(GroupNotFriendActivity.this, VerificationActivity.class);
-                    //对方信息
-                    intent.putExtra("detail_add_friend", mUserName);
-                    intent.putExtra("detail_add_nick_name", mNickName);
-                    intent.putExtra("detail_add_avatar_path", mAvatarPath);
-                    //自己的昵称或者是用户名
-                    intent.putExtra("detail_add_friend_my_nickname", mMyName);
-                    intent.setFlags(1);
-                    startActivity(intent);
+                    //newchange
+                    ToastUtil.shortToast(GroupNotFriendActivity.this, "您不能加对方为好友");
+//                    intent.setClass(GroupNotFriendActivity.this, VerificationActivity.class);
+//                    //对方信息
+//                    intent.putExtra("detail_add_friend", mUserName);
+//                    intent.putExtra("detail_add_nick_name", mNickName);
+//                    intent.putExtra("detail_add_avatar_path", mAvatarPath);
+//                    //自己的昵称或者是用户名
+//                    intent.putExtra("detail_add_friend_my_nickname", mMyName);
+//                    intent.setFlags(1);
+//                    startActivity(intent);
                 }
                 break;
-            case R.id.btn_send_message:
+            case R.id.btn_send_message://发送消息
+                //newchange
+                if (!mUserInfo.isFriend()) {
+                    ToastUtil.shortToast(GroupNotFriendActivity.this, "非好友不能发送消息");
+                    break;
+                }
+                //
                 intent.setClass(GroupNotFriendActivity.this, ChatActivity.class);
                 //创建会话
                 intent.putExtra(JGApplication.TARGET_ID, mUserInfo.getUserName());

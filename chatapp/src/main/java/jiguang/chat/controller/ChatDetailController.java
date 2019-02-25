@@ -58,7 +58,7 @@ import jiguang.chat.view.ChatDetailView;
 import jiguang.chat.view.SlipButton;
 
 /**
- * 聊天信息界面的控制器
+ * 聊天设置界面的控制器
  */
 public class ChatDetailController implements OnClickListener, OnItemClickListener,
         SlipButton.OnChangedListener {
@@ -301,7 +301,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
                 mDialog.show();
                 break;
-            case R.id.tv_moreGroup:
+            case R.id.tv_moreGroup://更多群成员查看
                 intent.setClass(mContext, GroupGridViewActivity.class);
                 intent.putExtra(JGApplication.GROUP_ID, mGroupId);
                 intent.putExtra(JGApplication.DELETE_MODE, false);
@@ -311,6 +311,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 if (mUserInfo.isFriend()) {
                     ToastUtil.shortToast(mContext, "对方已经是你的好友");
                 } else {
+                    //发送加好友验证消息
                     intent.setClass(mContext, VerificationActivity.class);
                     //对方信息
                     intent.putExtra("detail_add_nick_name", mNickName);
@@ -516,6 +517,12 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 mContext.startActivity(intent);
                 // 点击添加成员按钮
             } else if (position == mCurrentNum) {
+                //newchange
+                if(!mIsCreator){
+                    Toast.makeText(mContext, "您不能添加群成员", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //
                 mContext.showContacts(mGroupId);
 
                 // 是群主, 成员个数大于1并点击删除按钮

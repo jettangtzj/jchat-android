@@ -27,7 +27,7 @@ import jiguang.chat.application.JGApplication;
 import jiguang.chat.utils.DialogCreator;
 
 /**
- * 群聊 聊天设置 群成员界面
+ * 群聊 聊天设置 更多群成员列表界面
  */
 
 public class GroupGridViewActivity extends BaseActivity {
@@ -87,10 +87,10 @@ public class GroupGridViewActivity extends BaseActivity {
                         intent.setClass(GroupGridViewActivity.this, PersonalActivity.class);
                     } else {
                         UserInfo userInfo = mMemberInfoList.get(position);
-                        if (userInfo.isFriend()) {
+                        if (userInfo.isFriend()) {//如果成员是好友
                             intent.setClass(GroupGridViewActivity.this, FriendInfoActivity.class);
                             intent.putExtra("group_grid", true);
-                        } else {
+                        } else {//如果成员非好友
                             intent.setClass(GroupGridViewActivity.this, GroupNotFriendActivity.class);
                         }
                         intent.putExtra(JGApplication.TARGET_ID, userInfo.getUserName());
@@ -100,6 +100,12 @@ public class GroupGridViewActivity extends BaseActivity {
                     startActivity(intent);
                     // 点击添加成员按钮
                 } else if (position == mCurrentNum) {
+                    //newchange
+                    if(!mIsCreator){
+                        Toast.makeText(GroupGridViewActivity.this, "您不能添加群成员", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    //
                     showContacts();
 
                     // 是群主, 成员个数大于1并点击删除按钮
@@ -123,6 +129,7 @@ public class GroupGridViewActivity extends BaseActivity {
 
     }
 
+    //去选择好友界面 添加邀请加入群聊
     public void showContacts() {
         Intent intent = new Intent();
         intent.putExtra(TAG, 1);
