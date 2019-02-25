@@ -21,7 +21,8 @@ import jiguang.chat.utils.ToastUtil;
 import jiguang.chat.view.MeView;
 
 /**
- * Created by ${chenyn} on 2017/2/20.
+ *  主界面  我界面
+ *
  */
 
 public class MeFragment extends BaseFragment {

@@ -42,7 +42,7 @@ import jiguang.chat.view.ConversationListView;
 import jiguang.chat.view.MenuItemView;
 
 /**
- * 会话界面
+ * 主界面 会话界面
  */
 
 public class ConversationListFragment extends BaseFragment {

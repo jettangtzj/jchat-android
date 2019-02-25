@@ -11,6 +11,7 @@ import jiguang.chat.R;
 
 /**
  * Created by ${chenyn} on 2017/2/20.
+ * 主界面的布局和组件
  */
 
 public class MainView extends RelativeLayout {

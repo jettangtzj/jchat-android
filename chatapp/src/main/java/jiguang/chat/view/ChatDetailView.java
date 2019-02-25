@@ -20,37 +20,39 @@ import java.io.File;
 import jiguang.chat.R;
 import jiguang.chat.adapter.GroupMemberGridAdapter;
 
-
+/**
+ * 聊天的信息设置布局和组件
+ */
 public class ChatDetailView extends LinearLayout {
 
 
-    private LinearLayout mGroupDescLL;
+    private LinearLayout mGroupDescLL;//群描述
     private View mSplitLine1;
     private View mSplitLine2;
-    private LinearLayout mGroupNameLL;
-    private LinearLayout mMyNameLL;
-    private LinearLayout mGroupNumLL;
-    private LinearLayout mGroupChatRecordLL;
-    private LinearLayout mGroupChatDelLL;
-    private LinearLayout mChatFile;
+    private LinearLayout mGroupNameLL;//群名称
+    private LinearLayout mMyNameLL;//我在本群的昵称 不显示
+    private LinearLayout mGroupNumLL;//群人数上限 不显示
+    private LinearLayout mGroupChatRecordLL;//查找聊天内容 不显示
+    private LinearLayout mGroupChatDelLL;//清空聊天记录
+    private LinearLayout mChatFile;//聊天文件
     private ImageButton mReturnBtn;
     private TextView mTitle;
     private TextView mGroupDesc;
     private ImageButton mMenuBtn;
-    private Button mDelGroupBtn;
+    private Button mDelGroupBtn;//删除并退群
     private TextView mGroupName;
     private TextView mMyName;
-    private GroupGridView mGridView;
+    private GroupGridView mGridView;//群成员显示组件
     public static SlipButton mNoDisturbBtn;
     private SlipButton mBlockBtn;
     private RelativeLayout mBlockRl;
     private View mBlockLine;
     private Context mContext;
-    private LinearLayout mTv_moreGroup;
-    private RelativeLayout mGroupAvatarLL;
-    private Button mAddFriend;
-    private LinearLayout mDetailAddFriend;
-    private RelativeLayout mClear_rl;
+    private LinearLayout mTv_moreGroup;//查看更多群成员
+    private RelativeLayout mGroupAvatarLL;//群头像
+    private Button mAddFriend;//添加好友按钮 不显示
+    private LinearLayout mDetailAddFriend;//添加好友 不显示
+    private RelativeLayout mClear_rl;//清理缓存
     private ImageView mIv_groupAvatar;
 
     public ChatDetailView(Context context, AttributeSet attrs) {
@@ -136,6 +138,10 @@ public class ChatDetailView extends LinearLayout {
         mMyName.setText(str);
     }
 
+    /**
+     * 将聊天信息设置界面变为单聊的显示模式
+     * @param friend 当前聊天的对象是否为好友
+     */
     public void setSingleView(boolean friend) {
         if (friend) {
             mDelGroupBtn.setVisibility(VISIBLE);

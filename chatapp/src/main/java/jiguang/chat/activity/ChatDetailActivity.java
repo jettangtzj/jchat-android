@@ -31,7 +31,7 @@ import jiguang.chat.utils.ToastUtil;
 import jiguang.chat.view.ChatDetailView;
 
 /**
- * 聊天的具体信息界面
+ * 聊天的信息设置界面
  */
 
 public class ChatDetailActivity extends BaseActivity {

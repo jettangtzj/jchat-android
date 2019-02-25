@@ -36,7 +36,7 @@ import jiguang.chat.utils.pinyin.HanziToPinyin;
 import jiguang.chat.view.ContactsView;
 
 /**
- * Created by ${chenyn} on 2017/2/20.
+ * 主界面 联系人界面
  */
 
 public class ContactsFragment extends BaseFragment {

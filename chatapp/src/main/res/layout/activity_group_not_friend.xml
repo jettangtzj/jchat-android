@@ -113,6 +113,7 @@
         android:background="#E8EDF3"/>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout_name"
         style="@style/SettingItemStyle"
         android:background="#fff">
 

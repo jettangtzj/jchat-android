@@ -49,6 +49,9 @@ import jiguang.chat.utils.ToastUtil;
 import jiguang.chat.utils.pinyin.HanyuPinyin;
 import jiguang.chat.utils.sidebar.SideBar;
 
+/**
+ * 群聊 群设置 成员列表删除
+ */
 public class MembersInChatActivity extends BaseActivity {
 
     private ListView mListView;

@@ -120,7 +120,7 @@ public class GroupMemberGridAdapter extends BaseAdapter {
         }
         //群聊
         if (mIsGroup) {
-            //群成员
+            //群成员设置图标头像
             if (position < mMemberList.size()) {
                 UserInfo userInfo = mMemberList.get(position);
                 viewTag.icon.setVisibility(View.VISIBLE);
@@ -155,12 +155,12 @@ public class GroupMemberGridAdapter extends BaseAdapter {
                 viewTag.icon.setVisibility(View.VISIBLE);
                 viewTag.name.setVisibility(View.VISIBLE);
             } else if (position == mCurrentNum) {
+                //设置添加群成员按钮
                 viewTag.icon.setImageResource(R.drawable.chat_detail_add);
                 viewTag.icon.setVisibility(View.VISIBLE);
                 viewTag.name.setVisibility(View.INVISIBLE);
-
-                //设置删除群成员按钮
             } else if (position == mCurrentNum + 1) {
+                //设置删除群成员按钮
                 if (mIsCreator && mCurrentNum > 1) {
                     viewTag.icon.setImageResource(R.drawable.chat_detail_del);
                     viewTag.icon.setVisibility(View.VISIBLE);
