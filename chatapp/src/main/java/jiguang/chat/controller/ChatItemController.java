@@ -165,7 +165,9 @@ public class ChatItemController {
                 holder.tv_nickUser.setText(mUserName[0]);
             } else {
                 holder.tv_nickUser.setText(name);
-                holder.tv_userName.setText("用户名: " + mUserName[0]);
+                //newchange
+                holder.tv_userName.setText("");
+                //holder.tv_userName.setText("用户名: " + mUserName[0]);
             }
             if (userInfo.getAvatarFile() != null) {
                 holder.business_head.setImageBitmap(BitmapFactory.decodeFile(userInfo.getAvatarFile().getAbsolutePath()));
