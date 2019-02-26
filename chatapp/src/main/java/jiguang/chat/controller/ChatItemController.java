@@ -83,6 +83,7 @@ import jiguang.chat.utils.ToastUtil;
 
 /**
  * 聊天单条信息的控制器
+ * 各种消息的处理和事件
  */
 
 public class ChatItemController {
@@ -142,6 +143,12 @@ public class ChatItemController {
         });
     }
 
+    /**
+     * 处理个人名片显示消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleBusinessCard(final Message msg, final ViewHolder holder, int position) {
         final TextContent[] textContent = {(TextContent) msg.getContent()};
         final String[] mUserName = {textContent[0].getStringExtra("userName")};
@@ -257,6 +264,7 @@ public class ChatItemController {
             this.mHolder = holder;
         }
 
+        //个人名片的点击
         @Override
         public void onClick(View v) {
             if (mHolder.ll_businessCard != null && v.getId() == mHolder.ll_businessCard.getId()) {
@@ -284,6 +292,12 @@ public class ChatItemController {
         }
     }
 
+    /**
+     * 处理文本消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleTextMsg(final Message msg, final ViewHolder holder, int position) {
         final String content = ((TextContent) msg.getContent()).getText();
         SimpleCommonUtils.spannableEmoticonFilter(holder.txtContent, content);
@@ -345,7 +359,12 @@ public class ChatItemController {
         }
     }
 
-    // 处理图片
+    /**
+     * 处理图片消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleImgMsg(final Message msg, final ViewHolder holder, final int position) {
         final ImageContent imgContent = (ImageContent) msg.getContent();
         final String jiguang = imgContent.getStringExtra("jiguang");
@@ -539,6 +558,12 @@ public class ChatItemController {
         }
     }
 
+    /**
+     * 处理语音消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleVoiceMsg(final Message msg, final ViewHolder holder, final int position) {
         final VoiceContent content = (VoiceContent) msg.getContent();
         final MessageDirect msgDirect = msg.getDirect();
@@ -637,6 +662,12 @@ public class ChatItemController {
         holder.txtContent.setOnClickListener(new BtnOrTxtListener(position, holder));
     }
 
+    /**
+     * 处理位置消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleLocationMsg(final Message msg, final ViewHolder holder, int position) {
         final LocationContent content = (LocationContent) msg.getContent();
         String path = content.getStringExtra("path");
@@ -778,7 +809,12 @@ public class ChatItemController {
         }
     }
 
-    //小视频
+    /**
+     * 处理视频消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleVideo(final Message msg, final ViewHolder holder, int position) {
         FileContent fileContent = (FileContent) msg.getContent();
         String videoPath = fileContent.getLocalPath();
@@ -885,7 +921,12 @@ public class ChatItemController {
         holder.picture.setOnLongClickListener(mLongClickListener);
     }
 
-
+    /**
+     * 处理文件消息
+     * @param msg
+     * @param holder
+     * @param position
+     */
     public void handleFileMsg(final Message msg, final ViewHolder holder, int position) {
         final FileContent content = (FileContent) msg.getContent();
         if (holder.txtContent != null) {
@@ -1065,7 +1106,11 @@ public class ChatItemController {
         holder.contentLl.setOnClickListener(new BtnOrTxtListener(position, holder));
     }
 
-
+    /**
+     * 处理群变化消息
+     * @param msg
+     * @param holder
+     */
     public void handleGroupChangeMsg(Message msg, ViewHolder holder) {
         String content = ((EventNotificationContent) msg.getContent()).getEventText();
         EventNotificationContent.EventNotificationType type = ((EventNotificationContent) msg
@@ -1082,6 +1127,11 @@ public class ChatItemController {
         }
     }
 
+    /**
+     * 处理群成员变动消息
+     * @param msg
+     * @param holder
+     */
     public void handlePromptMsg(Message msg, ViewHolder holder) {
         String promptText = ((PromptContent) msg.getContent()).getPromptText();
         holder.groupChange.setText(promptText);
@@ -1089,6 +1139,11 @@ public class ChatItemController {
         holder.msgTime.setVisibility(View.GONE);
     }
 
+    /**
+     * 处理自定义消息
+     * @param msg
+     * @param holder
+     */
     public void handleCustomMsg(Message msg, ViewHolder holder) {
         CustomContent content = (CustomContent) msg.getContent();
         Boolean isBlackListHint = content.getBooleanValue("blackList");

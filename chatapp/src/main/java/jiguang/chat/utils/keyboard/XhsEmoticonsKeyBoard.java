@@ -30,6 +30,9 @@ import jiguang.chat.utils.keyboard.widget.EmoticonsToolBarView;
 import jiguang.chat.utils.keyboard.widget.FuncLayout;
 import jiguang.chat.view.RecordVoiceButton;
 
+/**
+ * 聊天窗口的输入组件
+ */
 public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnClickListener, EmoticonsFuncView.OnEmoticonsPageViewListener,
         EmoticonsToolBarView.OnToolBarItemClickListener, EmoticonsEditText.OnBackKeyClickListener, FuncLayout.OnFuncChangeListener {
 
