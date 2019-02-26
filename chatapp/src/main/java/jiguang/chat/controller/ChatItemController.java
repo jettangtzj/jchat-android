@@ -160,10 +160,12 @@ public class ChatItemController {
             String name = userInfo.getNickname();
             //如果没有昵称,名片上面的位置显示用户名
             //如果有昵称,上面显示昵称,下面显示用户名
-            if (TextUtils.isEmpty(name)) {
+            if (TextUtils.isEmpty(name)) {//如果没有昵称
                 holder.tv_userName.setText("");
-                holder.tv_nickUser.setText(mUserName[0]);
-            } else {
+                //newchange
+                holder.tv_nickUser.setText("");
+                //holder.tv_nickUser.setText(mUserName[0]);
+            } else {//如果有昵称
                 holder.tv_nickUser.setText(name);
                 //newchange
                 holder.tv_userName.setText("");
