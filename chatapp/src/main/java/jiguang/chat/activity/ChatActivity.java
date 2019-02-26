@@ -426,7 +426,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         }
     }
 
-    //启动进入具体聊天界面
+    //启动进入聊天设置界面
     public void startChatDetailActivity(String targetId, String appKey, long groupId) {
         Intent intent = new Intent();
         intent.putExtra(TARGET_ID, targetId);
