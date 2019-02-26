@@ -36,18 +36,18 @@ import jiguang.chat.utils.ToastUtil;
 public class GroupNotFriendActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView mIv_friendPhoto;
-    private TextView mTv_noteName;
+    private TextView mTv_noteName;//昵称
     private TextView mTv_sign;
     private TextView mTv_userName;
-    private TextView mTv_gender;
-    private TextView mTv_birthday;
-    private TextView mTv_address;
-    private Button mBtn_add_friend;
-    private Button mBtn_send_message;
+    private TextView mTv_gender;//性别
+    private TextView mTv_birthday;//生日
+    private TextView mTv_address;//地区
+    private Button mBtn_add_friend;//加好友
+    private Button mBtn_send_message;//发信息
     private String mUserName;
     private UserInfo mUserInfo;
     private String mMyName;
-    private RelativeLayout mRl_NickName;
+    private RelativeLayout mRl_NickName;//昵称
     private TextView mTv_NickName;
     private String mNickName;
     private String mAvatarPath;
@@ -57,7 +57,7 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
     private ImageView mIvMore;
 
     //newchange
-    private RelativeLayout relativeLayout_nameRL;
+    private RelativeLayout relativeLayout_nameRL;//用户名
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,6 +167,7 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
         mIvMore.setOnClickListener(this);
     }
 
+    //生日日期转换
     public String getBirthday(UserInfo info) {
         long birthday = info.getBirthday();
         Date date = new Date(birthday);
@@ -226,10 +227,10 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
                 }
                 startActivity(intent);
                 break;
-            case R.id.return_btn:
+            case R.id.return_btn://返回
                 finish();
                 break;
-            case R.id.iv_more:
+            case R.id.iv_more://右上的更多按钮
                 intent.setClass(GroupNotFriendActivity.this, NotFriendSettingActivity.class);
                 intent.putExtra("notFriendUserName", mUserName);
                 startActivity(intent);
