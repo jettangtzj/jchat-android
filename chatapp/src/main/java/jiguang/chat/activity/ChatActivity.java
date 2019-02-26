@@ -629,7 +629,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (message.getTargetType() == ConversationType.single) {
+                if (message.getTargetType() == ConversationType.single) {//单聊
                     UserInfo userInfo = (UserInfo) message.getTargetInfo();
                     String targetId = userInfo.getUserName();
                     String appKey = userInfo.getAppKey();
@@ -641,7 +641,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
                             mChatAdapter.notifyDataSetChanged();
                         }
                     }
-                } else {
+                } else {//群聊
                     long groupId = ((GroupInfo) message.getTargetInfo()).getGroupID();
                     if (groupId == mGroupId) {
                         Message lastMsg = mChatAdapter.getLastMsg();
@@ -989,6 +989,12 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
                 }
                 break;
             case JGApplication.BUSINESS_CARD://个人名片
+                //newchange
+                if(!mIsSingle){
+                    ToastUtil.shortToast(mContext, "群聊中禁止发送个人名片");
+                    break;
+                }
+                //
                 intent = new Intent(mContext, FriendListActivity.class);
                 intent.putExtra("isSingle", mIsSingle);
                 intent.putExtra("userId", mTargetId);

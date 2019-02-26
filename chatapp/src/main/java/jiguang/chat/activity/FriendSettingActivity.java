@@ -37,12 +37,12 @@ import jiguang.chat.view.SlipButton;
 public class FriendSettingActivity extends BaseActivity implements SlipButton.OnChangedListener, View.OnClickListener {
 
     private RelativeLayout mSetNoteName;
-    private SlipButton mBtn_addBlackList;
+    private SlipButton mBtn_addBlackList;//加入黑名单
     private Button mBtn_deleteFriend;
-    private TextView mTv_noteName;
+    private TextView mTv_noteName;//备注名
     private Dialog mDialog;
     private UserInfo mFriendInfo;
-    private RelativeLayout mRl_business;
+    private RelativeLayout mRl_business;//发送名片
 
 
     @Override
@@ -65,13 +65,13 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.setNoteName:
+            case R.id.setNoteName://设置备注名
                 Intent intent = new Intent(FriendSettingActivity.this, SetNoteNameActivity.class);
                 intent.putExtra("user", getIntent().getStringExtra("userName"));
                 intent.putExtra("note", getIntent().getStringExtra("noteName"));
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.btn_deleteFriend:
+            case R.id.btn_deleteFriend://删除好友
                 View.OnClickListener listener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -121,8 +121,7 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
                 mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
                 mDialog.show();
                 break;
-            //发送好友名片
-            case R.id.rl_business:
+            case R.id.rl_business://发送好友名片
                 Intent businessIntent = new Intent(FriendSettingActivity.this, ForwardMsgActivity.class);
                 businessIntent.setFlags(1);
                 businessIntent.putExtra("userName", mFriendInfo.getUserName());
@@ -155,6 +154,9 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
         mBtn_deleteFriend = (Button) findViewById(R.id.btn_deleteFriend);
         mTv_noteName = (TextView) findViewById(R.id.tv_noteName);
         mRl_business = (RelativeLayout) findViewById(R.id.rl_business);
+        //newchange
+        mRl_business.setVisibility(View.GONE);
+        //
         final Dialog dialog = DialogCreator.createLoadingDialog(FriendSettingActivity.this,
                 FriendSettingActivity.this.getString(R.string.jmui_loading));
         dialog.show();
