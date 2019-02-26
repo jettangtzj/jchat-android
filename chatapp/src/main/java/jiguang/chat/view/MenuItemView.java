@@ -5,7 +5,10 @@ import android.widget.LinearLayout;
 
 import jiguang.chat.R;
 
-
+/**
+ * 右上快捷功能布局
+ * 发起单聊、发起群聊、添加好友、扫一扫
+ */
 public class MenuItemView {
 
     private View mView;
