@@ -187,10 +187,14 @@ public class ChatItemController {
                         //如果有昵称,上面显示昵称,下面显示用户名
                         if (TextUtils.isEmpty(name)) {
                             holder.tv_userName.setText("");
-                            holder.tv_nickUser.setText(mUserName[0]);
+                            //newchange
+                            holder.tv_nickUser.setText("");
+                            //holder.tv_nickUser.setText(mUserName[0]);
                         } else {
                             holder.tv_nickUser.setText(name);
-                            holder.tv_userName.setText("用户名: " + mUserName[0]);
+                            //newchange
+                            holder.tv_userName.setText("");
+                            //holder.tv_userName.setText("用户名: " + mUserName[0]);
                         }
                         if (userInfo.getAvatarFile() != null) {
                             holder.business_head.setImageBitmap(BitmapFactory.decodeFile(userInfo.getAvatarFile().getAbsolutePath()));
