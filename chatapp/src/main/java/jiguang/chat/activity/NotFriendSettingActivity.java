@@ -22,7 +22,7 @@ import jiguang.chat.view.SlipButton;
 
 public class NotFriendSettingActivity extends BaseActivity implements SlipButton.OnChangedListener{
     private UserInfo mUserInfo;
-    private SlipButton mBtn_addBlackList;
+    private SlipButton mBtn_addBlackList;//加入黑名单
     private String mUserName;
 
     @Override
@@ -49,15 +49,19 @@ public class NotFriendSettingActivity extends BaseActivity implements SlipButton
     }
 
     public void sendBusinessCard(View view) {
+        //newchange
+        ToastUtil.shortToast(NotFriendSettingActivity.this, "您不能发送个人名片");
+        return;
+        //
         //发送此人的名片
-        Intent businessIntent = new Intent(NotFriendSettingActivity.this, ForwardMsgActivity.class);
-        businessIntent.setFlags(1);
-        businessIntent.putExtra("userName", mUserInfo.getUserName());
-        businessIntent.putExtra("appKey", mUserInfo.getAppKey());
-        if (mUserInfo.getAvatarFile() != null) {
-            businessIntent.putExtra("avatar", mUserInfo.getAvatarFile().getAbsolutePath());
-        }
-        startActivity(businessIntent);
+//        Intent businessIntent = new Intent(NotFriendSettingActivity.this, ForwardMsgActivity.class);
+//        businessIntent.setFlags(1);
+//        businessIntent.putExtra("userName", mUserInfo.getUserName());
+//        businessIntent.putExtra("appKey", mUserInfo.getAppKey());
+//        if (mUserInfo.getAvatarFile() != null) {
+//            businessIntent.putExtra("avatar", mUserInfo.getAvatarFile().getAbsolutePath());
+//        }
+//        startActivity(businessIntent);
     }
 
     @Override
