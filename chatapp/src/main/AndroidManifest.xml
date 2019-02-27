@@ -59,7 +59,7 @@
         <!--如果需要使用到位置服务，需要更换百度地图apikey为自己的apikey-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="Uy4Ie4m3G5RMYYxRLrV7ThswgAYdhfZL"/>
+            android:value="RgqnAvKLtlSfqv4j2U30hWVzt9E1Es6p"/>
 
         <activity
             android:name=".activity.WelcomeActivity"
