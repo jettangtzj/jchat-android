@@ -10,12 +10,14 @@ import jiguang.chat.activity.FriendSettingActivity;
 import jiguang.chat.view.FriendInfoView;
 
 /**
- * Created by ${chenyn} on 2017/3/24.
+ * 好友信息查看控制器
  */
 
 public class FriendInfoController implements View.OnClickListener {
     private FriendInfoActivity mContext;
     private UserInfo friendInfo;
+    private long mGroupId;//群组ID
+    private boolean isGroupAdmin = false;//是否具有群管理权
 
     public FriendInfoController(FriendInfoView friendInfoView, FriendInfoActivity context) {
         this.mContext = context;
@@ -30,10 +32,12 @@ public class FriendInfoController implements View.OnClickListener {
             case R.id.iv_friendPhoto:
                 mContext.startBrowserAvatar();
                 break;
-            case R.id.jmui_commit_btn:
+            case R.id.jmui_commit_btn://进入好友设置、右上键
                 Intent intent = new Intent(mContext, FriendSettingActivity.class);
                 intent.putExtra("userName", friendInfo.getUserName());
                 intent.putExtra("noteName", friendInfo.getNotename());
+                intent.putExtra("mGroupId", mGroupId);
+                intent.putExtra("isGroupAdmin", isGroupAdmin);
                 mContext.startActivity(intent);
                 break;
             case R.id.return_btn:
@@ -48,4 +52,19 @@ public class FriendInfoController implements View.OnClickListener {
         friendInfo = info;
     }
 
+    public long getmGroupId() {
+        return mGroupId;
+    }
+
+    public void setmGroupId(long mGroupId) {
+        this.mGroupId = mGroupId;
+    }
+
+    public boolean isGroupAdmin() {
+        return isGroupAdmin;
+    }
+
+    public void setGroupAdmin(boolean groupAdmin) {
+        isGroupAdmin = groupAdmin;
+    }
 }

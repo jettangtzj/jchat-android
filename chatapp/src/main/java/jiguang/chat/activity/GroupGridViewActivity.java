@@ -19,6 +19,7 @@ import java.util.List;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
+import cn.jpush.im.android.api.model.GroupMemberInfo;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.api.BasicCallback;
 import jiguang.chat.R;
@@ -35,7 +36,8 @@ public class GroupGridViewActivity extends BaseActivity {
     private static final int ADD_MEMBERS_TO_GRIDVIEW = 2048;
 
     private GridView mGroup_gridView;
-    private boolean mIsCreator = false;
+    private boolean mIsCreator = false;//是否群主
+    private boolean isGroupKeeper = false;//是否管理员
     private long mGroupId;
     private List<UserInfo> mMemberInfoList = new ArrayList<UserInfo>();
     private int mCurrentNum;
@@ -70,20 +72,27 @@ public class GroupGridViewActivity extends BaseActivity {
         mMemberInfoList = groupInfo.getGroupMembers();
 
         mCurrentNum = mMemberInfoList.size();
-        String groupOwner = groupInfo.getGroupOwner();
+        String groupOwner = groupInfo.getOwnerMemberInfo().getUserInfo().getUserName();
         final String userName = JMessageClient.getMyInfo().getUserName();
-        if (groupOwner.equals(userName)) {
+        if (groupOwner.equals(userName)) {//是否群主
             mIsCreator = true;
+        } else {//是否管理员
+            GroupMemberInfo gmi = groupInfo.getGroupMember(userName, null);
+            if(gmi.getType() == GroupMemberInfo.Type.group_keeper){
+                isGroupKeeper = true;
+            }
+
         }
-        mGridViewAdapter = new GroupGridViewAdapter(this, mMemberInfoList, mIsCreator, mAvatarSize);
+        mGridViewAdapter = new GroupGridViewAdapter(this, mMemberInfoList, mIsCreator || isGroupKeeper, mAvatarSize);
         mGroup_gridView.setAdapter(mGridViewAdapter);
 
+        //点击成员头像，进入成员信息查看页
         mGroup_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 if (position < mCurrentNum) {
-                    if (mMemberInfoList.get(position).getUserName().equals(userName)) {
+                    if (mMemberInfoList.get(position).getUserName().equals(userName)) {//自己本人
                         intent.setClass(GroupGridViewActivity.this, PersonalActivity.class);
                     } else {
                         UserInfo userInfo = mMemberInfoList.get(position);
@@ -95,13 +104,14 @@ public class GroupGridViewActivity extends BaseActivity {
                         }
                         intent.putExtra(JGApplication.TARGET_ID, userInfo.getUserName());
                         intent.putExtra(JGApplication.TARGET_APP_KEY, userInfo.getAppKey());
-                        intent.putExtra(JGApplication.GROUP_ID, mGroupId);
+                        intent.putExtra(JGApplication.GROUP_ID, mGroupId);//群组ID
+                        intent.putExtra("IS_GROUP_ADMIN", mIsCreator || isGroupKeeper);//是否有管理权
                     }
                     startActivity(intent);
                     // 点击添加成员按钮
                 } else if (position == mCurrentNum) {
                     //newchange
-                    if(!mIsCreator){
+                    if(!mIsCreator && !isGroupKeeper){
                         Toast.makeText(GroupGridViewActivity.this, "您不能添加群成员", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -109,7 +119,7 @@ public class GroupGridViewActivity extends BaseActivity {
                     showContacts();
 
                     // 是群主, 成员个数大于1并点击删除按钮
-                } else if (position == mCurrentNum + 1 && mIsCreator && mCurrentNum > 1) {
+                } else if (position == mCurrentNum + 1 && (mIsCreator || isGroupKeeper) && mCurrentNum > 1) {
                     intent.putExtra(JGApplication.DELETE_MODE, true);
                     intent.putExtra(JGApplication.GROUP_ID, mGroupId);
                     intent.setClass(GroupGridViewActivity.this, MembersInChatActivity.class);

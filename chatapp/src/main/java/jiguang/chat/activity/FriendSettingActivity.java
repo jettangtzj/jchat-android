@@ -14,8 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetGroupInfoCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.android.api.model.GroupInfo;
+import cn.jpush.im.android.api.model.GroupMemberInfo;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.eventbus.EventBus;
 import cn.jpush.im.api.BasicCallback;
@@ -38,11 +41,17 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
 
     private RelativeLayout mSetNoteName;
     private SlipButton mBtn_addBlackList;//加入黑名单
+    private SlipButton btn_addGroupKeeper;//设为群管理
+    private SlipButton btn_setGroupMemSilence;//设为禁言
     private Button mBtn_deleteFriend;
     private TextView mTv_noteName;//备注名
     private Dialog mDialog;
-    private UserInfo mFriendInfo;
+    private UserInfo mFriendInfo;//用户对象
+    private String mUserName;//用户名
     private RelativeLayout mRl_business;//发送名片
+    private long mGroupId;//群组ID
+    private boolean isGroupAdmin = false;//是否具有群管理权
+    private GroupInfo group;//群组信息
 
 
     @Override
@@ -57,6 +66,8 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
     private void initData() {
         //设置黑名单
         mBtn_addBlackList.setOnChangedListener(R.id.btn_addBlackList, this);
+        btn_addGroupKeeper.setOnChangedListener(R.id.btn_addGroupKeeper, this);
+        btn_setGroupMemSilence.setOnChangedListener(R.id.btn_setGroupMemSilence, this);
         mBtn_deleteFriend.setOnClickListener(this);
         mSetNoteName.setOnClickListener(this);
         mRl_business.setOnClickListener(this);
@@ -149,8 +160,15 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
 
     private void initView() {
         initTitle(true, true, "设置", "", false, "");
+        //
+        mGroupId = getIntent().getLongExtra("mGroupId", 0);
+        isGroupAdmin = getIntent().getBooleanExtra("isGroupAdmin",false);
+        mUserName = getIntent().getStringExtra("userName");
+        //
         mSetNoteName = (RelativeLayout) findViewById(R.id.setNoteName);
         mBtn_addBlackList = (SlipButton) findViewById(R.id.btn_addBlackList);
+        btn_addGroupKeeper = (SlipButton) findViewById(R.id.btn_addGroupKeeper);
+        btn_setGroupMemSilence = (SlipButton) findViewById(R.id.btn_setGroupMemSilence);
         mBtn_deleteFriend = (Button) findViewById(R.id.btn_deleteFriend);
         mTv_noteName = (TextView) findViewById(R.id.tv_noteName);
         mRl_business = (RelativeLayout) findViewById(R.id.rl_business);
@@ -163,7 +181,7 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
         if (!TextUtils.isEmpty(getIntent().getStringExtra("noteName"))) {
             mTv_noteName.setText(getIntent().getStringExtra("noteName"));
         }
-        JMessageClient.getUserInfo(getIntent().getStringExtra("userName"), new GetUserInfoCallback() {
+        JMessageClient.getUserInfo(mUserName, new GetUserInfoCallback() {
             @Override
             public void gotResult(int responseCode, String responseMessage, UserInfo info) {
                 dialog.dismiss();
@@ -180,6 +198,30 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
                 }
             }
         });
+        if(isGroupAdmin && mGroupId != 0){//设置可见
+            RelativeLayout rl = (RelativeLayout)findViewById(R.id.relativeLayout_addGroupKeeper);
+            rl.setVisibility(View.VISIBLE);
+            rl = (RelativeLayout)findViewById(R.id.relativeLayout_setGroupMemSilence);
+            rl.setVisibility(View.VISIBLE);
+            //获取群组信息
+            JMessageClient.getGroupInfo(mGroupId, new GetGroupInfoCallback() {
+                @Override
+                public void gotResult(int i, String s, GroupInfo groupInfo) {
+                    if(i == 0){
+                        //获取对象值，并判断是否管理员、是否被禁言，设置按钮初始状态
+                        group = groupInfo;
+                        GroupMemberInfo gmi = groupInfo.getGroupMember(mUserName, null);
+                        if(gmi.getType() == GroupMemberInfo.Type.group_keeper){
+                            btn_addGroupKeeper.setChecked(true);
+                        }else if(gmi.getType() == GroupMemberInfo.Type.group_member){
+                            btn_addGroupKeeper.setChecked(false);
+                        }
+
+                        btn_setGroupMemSilence.setChecked(groupInfo.isKeepSilence(mUserName, null));
+                    }
+                }
+            });
+        }
 
     }
 
@@ -191,16 +233,21 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
         }
     }
 
+    /**
+     * switch事件
+     * @param id
+     * @param checkState
+     */
     @Override
     public void onChanged(int id, boolean checkState) {
+        final LoadDialog dialog = new LoadDialog(FriendSettingActivity.this, false, "正在设置");
+        dialog.show();
         switch (id) {
-            case R.id.btn_addBlackList:
-                final LoadDialog dialog = new LoadDialog(FriendSettingActivity.this, false, "正在设置");
-                dialog.show();
+            case R.id.btn_addBlackList://加入黑名单按钮
                 String userName = getIntent().getStringExtra("userName");
                 List<String> name = new ArrayList<>();
                 name.add(userName);
-                if (checkState) {
+                if (checkState) {//加入
                     JMessageClient.addUsersToBlacklist(name, new BasicCallback() {
                         @Override
                         public void gotResult(int responseCode, String responseMessage) {
@@ -213,7 +260,7 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
                             }
                         }
                     });
-                } else {
+                } else {//移除
                     JMessageClient.delUsersFromBlacklist(name, new BasicCallback() {
                         @Override
                         public void gotResult(int responseCode, String responseMessage) {
@@ -223,6 +270,66 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
                             } else {
                                 mBtn_addBlackList.setChecked(true);
                                 ToastUtil.shortToast(FriendSettingActivity.this, "移除失败" + responseMessage);
+                            }
+                        }
+                    });
+                }
+                break;
+            case R.id.btn_addGroupKeeper://设为群管理
+                List<UserInfo> users = new ArrayList<UserInfo>();
+                users.add(mFriendInfo);
+                if (checkState) {
+                    group.addGroupKeeper(users, new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String responseMessage) {
+                            dialog.dismiss();
+                            if (responseCode == 0) {
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置成功");
+                            } else {
+                                btn_addGroupKeeper.setChecked(false);
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置失败" + responseMessage);
+                            }
+                        }
+                    });
+                }else{
+                    group.removeGroupKeeper(users, new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String responseMessage) {
+                            dialog.dismiss();
+                            if (responseCode == 0) {
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置成功");
+                            } else {
+                                btn_addGroupKeeper.setChecked(true);
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置失败" + responseMessage);
+                            }
+                        }
+                    });
+                }
+                break;
+            case R.id.btn_setGroupMemSilence://禁言
+                if (checkState) {
+                    group.setGroupMemSilence(mUserName, null, true, new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String responseMessage) {
+                            dialog.dismiss();
+                            if (responseCode == 0) {
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置成功");
+                            } else {
+                                btn_setGroupMemSilence.setChecked(false);
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置失败" + responseMessage);
+                            }
+                        }
+                    });
+                }else{
+                    group.setGroupMemSilence(mUserName, null, false, new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String responseMessage) {
+                            dialog.dismiss();
+                            if (responseCode == 0) {
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置成功");
+                            } else {
+                                btn_setGroupMemSilence.setChecked(true);
+                                ToastUtil.shortToast(FriendSettingActivity.this, "设置失败" + responseMessage);
                             }
                         }
                     });

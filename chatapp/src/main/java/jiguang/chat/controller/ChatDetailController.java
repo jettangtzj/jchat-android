@@ -32,6 +32,7 @@ import cn.jpush.im.android.api.content.MessageContent;
 import cn.jpush.im.android.api.enums.ContentType;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
+import cn.jpush.im.android.api.model.GroupMemberInfo;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.eventbus.EventBus;
 import cn.jpush.im.api.BasicCallback;
@@ -76,7 +77,8 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
     // 对应的mRestNum[mCurrent%4]的值即为空白项的数目
     private int[] mRestArray = new int[] {2, 1, 0, 3};
     private boolean mIsGroup = false;
-    private boolean mIsCreator = false;
+    private boolean mIsCreator = false;//是否群主
+    private boolean isGroupKeeper = false;//是否管理员
     private long mGroupId;
     private String mTargetId;
     private Dialog mLoadingDialog = null;
@@ -153,12 +155,17 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
             // 判断是否为群主
             if (groupOwnerId != null && groupOwnerId.equals(mMyUsername)) {
                 mIsCreator = true;
+            } else {//判断是否是群管理员
+                GroupMemberInfo gmi = mGroupInfo.getGroupMember(mMyUsername, null);
+                if(gmi.getType() == GroupMemberInfo.Type.group_keeper){
+                    isGroupKeeper = true;
+                }
             }
             mChatDetailView.setMyName(mMyUsername);
             mChatDetailView.showBlockView(mGroupInfo.isGroupBlocked());
             initAdapter();
             if (mGridAdapter != null) {
-                mGridAdapter.setCreator(mIsCreator);
+                mGridAdapter.setCreator(mIsCreator || isGroupKeeper);
             }
 
             //群聊才有点击显示更多
@@ -205,7 +212,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
 
     private void initAdapter() {
         // 初始化头像
-        mGridAdapter = new GroupMemberGridAdapter(mContext, mMemberInfoList, mIsCreator, mAvatarSize);
+        mGridAdapter = new GroupMemberGridAdapter(mContext, mMemberInfoList, mIsCreator || isGroupKeeper, mAvatarSize);
         if (mMemberInfoList.size() > MAX_GRID_ITEM) {
             mCurrentNum = MAX_GRID_ITEM - 1;
         } else {
@@ -499,7 +506,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         if (mIsGroup) {
             // 点击群成员项时
             if (position < mCurrentNum) {
-                if (mMemberInfoList.get(position).getUserName().equals(mMyUsername)) {
+                if (mMemberInfoList.get(position).getUserName().equals(mMyUsername)) {//自己本人
                     intent.setClass(mContext, PersonalActivity.class);
                 } else {
                     UserInfo userInfo = mMemberInfoList.get(position);
@@ -513,12 +520,13 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                     intent.putExtra(JGApplication.TARGET_ID, userInfo.getUserName());
                     intent.putExtra(JGApplication.TARGET_APP_KEY, userInfo.getAppKey());
                     intent.putExtra(JGApplication.GROUP_ID, mGroupId);
+                    intent.putExtra("IS_GROUP_ADMIN", mIsCreator || isGroupKeeper);//是否有管理权
                 }
                 mContext.startActivity(intent);
                 // 点击添加成员按钮
             } else if (position == mCurrentNum) {
                 //newchange
-                if(!mIsCreator){
+                if(!mIsCreator && !isGroupKeeper){
                     Toast.makeText(mContext, "您不能添加群成员", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -526,7 +534,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
                 mContext.showContacts(mGroupId);
 
                 // 是群主, 成员个数大于1并点击删除按钮
-            } else if (position == mCurrentNum + 1 && mIsCreator && mCurrentNum > 1) {
+            } else if (position == mCurrentNum + 1 && (mIsCreator || isGroupKeeper) && mCurrentNum > 1) {
                 intent.putExtra(JGApplication.DELETE_MODE, true);
                 intent.putExtra(JGApplication.GROUP_ID, mGroupId);
                 intent.setClass(mContext, MembersInChatActivity.class);
@@ -738,7 +746,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
             public void gotResult(int responseCode, String responseMessage, GroupInfo groupInfo) {
                 if (responseCode == 0) {
                     List<UserInfo> groupMembers = groupInfo.getGroupMembers();
-                    if (mIsCreator) {
+                    if (mIsCreator || isGroupKeeper) {
                         if (groupMembers.size() > 13) {
                             mChatDetailView.isLoadMoreShow(true);
                         } else {

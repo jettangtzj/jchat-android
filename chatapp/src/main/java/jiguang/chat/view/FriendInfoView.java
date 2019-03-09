@@ -23,7 +23,7 @@ import jiguang.chat.activity.FriendInfoActivity;
 import jiguang.chat.controller.FriendInfoController;
 
 /**
- * Created by ${chenyn} on 2017/3/24.
+ * 好友信息view
  */
 
 public class FriendInfoView extends LinearLayout {

@@ -85,6 +85,42 @@
             android:layout_marginRight="14dp"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout_addGroupKeeper"
+        android:visibility="gone"
+        style="@style/SettingItemStyle">
+
+        <TextView
+            style="@style/info_left_style"
+            android:text="设为群管理员"/>
+
+        <jiguang.chat.view.SlipButton
+            android:id="@+id/btn_addGroupKeeper"
+            android:layout_width="46dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_setGroupMemSilence"
+        android:visibility="gone"
+        style="@style/SettingItemStyle">
+
+        <TextView
+            style="@style/info_left_style"
+            android:text="设为禁言"/>
+
+        <jiguang.chat.view.SlipButton
+            android:id="@+id/btn_setGroupMemSilence"
+            android:layout_width="46dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"/>
+    </RelativeLayout>
+
 
     <Button
         android:visibility="gone"

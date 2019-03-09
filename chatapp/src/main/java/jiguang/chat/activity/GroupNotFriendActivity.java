@@ -20,6 +20,7 @@ import java.util.Date;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.android.api.model.GroupInfo;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.eventbus.EventBus;
 import jiguang.chat.R;
@@ -55,6 +56,8 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
     private LinearLayout mLl_additional;
     private ImageButton mReturnBtn;
     private ImageView mIvMore;
+    private long mGroupId;//群组ID
+    private boolean isGroupAdmin = false;//是否具有群管理权
 
     //newchange
     private RelativeLayout relativeLayout_nameRL;//用户名
@@ -137,6 +140,11 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
         if (TextUtils.isEmpty(mMyName)) {
             mMyName = myInfo.getUserName();
         }
+
+        //获取群相关信息
+        mGroupId = getIntent().getLongExtra(JGApplication.GROUP_ID, 0);
+        isGroupAdmin = getIntent().getBooleanExtra("IS_GROUP_ADMIN", false);
+
     }
 
     private void initView() {
@@ -232,7 +240,9 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.iv_more://右上的更多按钮
                 intent.setClass(GroupNotFriendActivity.this, NotFriendSettingActivity.class);
-                intent.putExtra("notFriendUserName", mUserName);
+                intent.putExtra("notFriendUserName", mUserName);//查看对象登陆账号
+                intent.putExtra("mGroupId", mGroupId);
+                intent.putExtra("isGroupAdmin", isGroupAdmin);
                 startActivity(intent);
                 break;
             default:
