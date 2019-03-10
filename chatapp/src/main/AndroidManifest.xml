@@ -61,6 +61,12 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="RgqnAvKLtlSfqv4j2U30hWVzt9E1Es6p"/>
 
+        <!--修复通讯录不正常显示-->
+        <provider
+            android:name="com.activeandroid.content.ContentProvider"
+            android:authorities="${applicationId}"
+            android:exported="false" />
+
         <activity
             android:name=".activity.WelcomeActivity"
             android:screenOrientation="portrait"
