@@ -68,12 +68,11 @@ public class FriendInfoActivity extends BaseActivity {
         mIsFromSearch = getIntent().getBooleanExtra("fromSearch", false);
         mIsAddFriend = getIntent().getBooleanExtra("addFriend", false);
         mFromGroup = getIntent().getBooleanExtra("group_grid", false);
-
+        mGroupId = getIntent().getLongExtra(JGApplication.GROUP_ID, 0);
         //从通讯录中点击过来
         if (mIsFromContact || mIsFromSearch || mFromGroup || mIsAddFriend) {
             updateUserInfo();
         } else {//从群组页面过来
-            mGroupId = getIntent().getLongExtra(JGApplication.GROUP_ID, 0);
             Conversation conv;
             if (mGroupId == 0) {
                 conv = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
@@ -92,6 +91,7 @@ public class FriendInfoActivity extends BaseActivity {
         //是否具有群管理权
         isGroupAdmin = getIntent().getBooleanExtra("IS_GROUP_ADMIN", false);
         mFriendInfoController.setGroupAdmin(isGroupAdmin);
+        mFriendInfoController.setmGroupId(mGroupId);
     }
 
     private void updateUserInfo() {

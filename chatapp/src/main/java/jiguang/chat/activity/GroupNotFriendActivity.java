@@ -66,7 +66,10 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_not_friend);
-
+        //获取群相关信息
+        mGroupId = getIntent().getLongExtra(JGApplication.GROUP_ID, 0);
+        isGroupAdmin = getIntent().getBooleanExtra("IS_GROUP_ADMIN", false);
+        //
         initView();
         initData();
     }
@@ -140,10 +143,6 @@ public class GroupNotFriendActivity extends BaseActivity implements View.OnClick
         if (TextUtils.isEmpty(mMyName)) {
             mMyName = myInfo.getUserName();
         }
-
-        //获取群相关信息
-        mGroupId = getIntent().getLongExtra(JGApplication.GROUP_ID, 0);
-        isGroupAdmin = getIntent().getBooleanExtra("IS_GROUP_ADMIN", false);
 
     }
 

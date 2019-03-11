@@ -198,6 +198,8 @@ public class FriendSettingActivity extends BaseActivity implements SlipButton.On
                 }
             }
         });
+        System.out.println("============isGroupAdmin="+isGroupAdmin);
+        System.out.println("============mGroupId="+mGroupId);
         if(isGroupAdmin && mGroupId != 0){//设置可见
             RelativeLayout rl = (RelativeLayout)findViewById(R.id.relativeLayout_addGroupKeeper);
             rl.setVisibility(View.VISIBLE);
